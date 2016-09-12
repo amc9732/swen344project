@@ -3,7 +3,7 @@
 
 TESTS
 
-From the root directory, run *jasmine-node spec* to run all unit tests. This refers to everything within the 'spec' directory. This can be nested and split into folders for organizational reasons, it doesn't all have to be in one file. BUT -- each file does need to have xxxx.spec.js at the end, not just xxxx.js!
+From the root directory, run `jasmine-node spec` to run all unit tests. This refers to everything within the 'spec' directory. This can be nested and split into folders for organizational reasons, it doesn't all have to be in one file. BUT -- each file does need to have xxxx.spec.js at the end, not just xxxx.js!
 
 #Some of the basic requirements include:#
 Admins should be able to create/remove courses.
