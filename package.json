@@ -1,0 +1,46 @@
+{
+  "scripts": {
+    "test": "jasmine-node spec",
+    "gulp": "gulp"
+  },
+  "engines": {
+    "node": "6.4.0"
+  },
+  "name": "enrollmentsystem",
+  "version": "1.0.0",
+  "description": "SWEN 344 Enrollment System Project",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tlr3552/swen344project.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tlr3552/swen344project/issues"
+  },
+  "homepage": "https://github.com/tlr3552/swen344project#readme",
+  "dependencies": {
+    "gulp-minify": "0.0.14",
+    "node-dev-server": "0.0.1",
+    "request": "^2.74.0"
+  },
+  "devDependencies": {
+    "beefy": "^2.1.8",
+    "bower": "^1.7.9",
+    "browserify": "^13.1.0",
+    "clean-css": "^3.4.19",
+    "gulp": "^3.9.1",
+    "gulp-clean-css": "^2.0.12",
+    "gulp-concat-css": "^2.3.0",
+    "gulp-concat-js": "^0.1.0",
+    "gulp-develop-server": "^0.5.2",
+    "gulp-inject": "^4.1.0",
+    "gulp-sourcemaps": "^1.6.0",
+    "gulp-uglify": "^2.0.0",
+    "jasmine-node": "^1.14.5",
+    "node-dev-server": "0.0.1",
+    "pump": "^1.0.1",
+    "tape": "^4.6.0"
+  }
+}

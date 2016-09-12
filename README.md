@@ -1,5 +1,9 @@
-#Student Enrollment System
+##Student Enrollment System##
 
+#TESTS#
+1) From the root directory, run 'jasmine-node spec' to run all unit tests. This refers to everything within the 'spec' directory. This can be nested and split into folders for organizational
+    reasons, it doesn't all have to be in one file. BUT -- each file does need to have xxxx.spec.js at the end, not just xxxx.js!
+----------------------------------------------------------------------------------------------
 This will allow students to enroll in specific courses.
 
 Some of the basic requirements include:

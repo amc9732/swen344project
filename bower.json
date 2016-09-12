@@ -1,0 +1,31 @@
+{
+  "name": "enrollmentsystem",
+  "description": "SWEN 344 Enrollment System Project",
+  "main": "/dist/",
+  "authors": [
+    "Tyler Russell <tlr3552@rit.edu>",
+    "Joshua James",
+    "Max Mendelson",
+    "Austin Cowan",
+    "Fawaz Alhenaki"
+  ],
+  "license": "ISC",
+  "keywords": [
+    "swen344",
+    "enrollment"
+  ],
+  "homepage": "https://github.com/tlr3552/swen344project",
+  "private": true,
+  "ignore": [
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+
+  "dependencies": {
+    "bootstrap": "https://github.com/twbs/bootstrap.git#v4-dev",
+    "gulp": "https://github.com/gulpjs/gulp.git",
+    "angular-material": "https://github.com/angular/bower-material.git"
+  }
+}
