@@ -33,7 +33,7 @@ gulp.task('tests', function() {
 })
 
 // Dev task
-gulp.task('dev', ['clean', 'views', 'styles', 'lint', 'browserify'], function() { });
+gulp.task('dev', ['clean', 'views', 'styles', 'static', 'lint', 'browserify'], function() { });
 
 // Clean task
 gulp.task('clean', function() {
@@ -59,6 +59,12 @@ gulp.task('styles', function() {
         .pipe(gulp.dest('dist/css/'));
 });
 
+//Static content
+gulp.task('static', function() {
+    gulp.src('favicon.ico')
+        .pipe(gulp.dest('dist/'));
+})
+
 // Browserify task
 gulp.task('browserify', function() {
     // Single point of entry (make sure not to src ALL your files, browserify will figure it out)
@@ -72,6 +78,7 @@ gulp.task('browserify', function() {
     // Output it to our dist folder
     .pipe(gulp.dest('dist/js'));
 });
+
 
 // Views task
 gulp.task('views', function() {
