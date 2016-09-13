@@ -2,7 +2,7 @@
 
 DEVELOPMENT
 
-Any changes made to the code will automatically update in your development environment. First install dependencies with `npm install', then run the server with `gulp`, and navigate to `localhost:5000` to view the page.
+Any changes made to the code will automatically update in your development environment. First install dependencies with `npm install`, then run the server with `gulp`, and navigate to `localhost:5000` to view the page.
 
 TESTS
 
