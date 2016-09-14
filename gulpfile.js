@@ -6,7 +6,8 @@ var gulp = require('gulp'),
     concat = require('gulp-concat'),
     rimraf = require('gulp-rimraf'),
     sass = require('gulp-sass'),
-    autoprefixer = require('gulp-autoprefixer');
+    autoprefixer = require('gulp-autoprefixer'),
+    jasmine = require('gulp-jasmine');
 
 // Modules for webserver and livereload
 var express = require('express'),
@@ -27,9 +28,9 @@ server.all('/*', function(req, res) {
 });
 
 gulp.task('tests', function() {
-    gulp.src('spec/test.js')
+    gulp.src('app/spec/helloworld.spec.js')
     // gulp-jasmine works on filepaths so you can't have any plugins before it 
-    .pipe(jasmine())
+    .pipe(jasmine());
 })
 
 // Dev task
