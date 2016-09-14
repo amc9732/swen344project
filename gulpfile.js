@@ -28,7 +28,7 @@ server.all('/*', function(req, res) {
 });
 
 gulp.task('tests', function() {
-    gulp.src('app/spec/helloworld.spec.js')
+    gulp.src('app/spec/*.spec.js')
     // gulp-jasmine works on filepaths so you can't have any plugins before it 
     .pipe(jasmine());
 })
