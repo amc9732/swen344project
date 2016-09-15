@@ -2,7 +2,7 @@
   "scripts": {
     "test": "jasmine-node spec",
     "gulp": "gulp",
-    "start": "http-server"
+    "start": "npm start"
   },
   "engines": {
     "node": "6.4.0"
