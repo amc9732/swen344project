@@ -14,7 +14,8 @@ var express = require('express'),
     refresh = require('gulp-livereload'),
     livereload = require('connect-livereload'),
     livereloadport = 35729,
-    serverport = 5000;
+    serverport = 5000,
+    runSequence = require('run-sequence');
 
 // Set up an express server (not starting it yet)
 var server = express();
@@ -28,13 +29,16 @@ server.all('/*', function(req, res) {
 });
 
 gulp.task('tests', function() {
-    gulp.src('app/spec/*.spec.js')
+    gulp.src('./spec/*.spec.js')
     // gulp-jasmine works on filepaths so you can't have any plugins before it 
     .pipe(jasmine());
-})
+});
 
 // Dev task
-gulp.task('dev', ['clean', 'views', 'styles', 'static', 'lint', 'browserify'], function() { });
+gulp.task('dev', ['clean', 'views', 'styles', 'static'], function() { 
+    runSequence('lint', 'tests', function(){});
+    console.log('Done.');
+});
 
 // Clean task
 gulp.task('clean', function() {
