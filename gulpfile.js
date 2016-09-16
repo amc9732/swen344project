@@ -47,7 +47,7 @@ gulp.task('inject', function() {
 
 //Minify all html for our build (only run this after everything is minified and injected into index.html)
 //Then place in dist folder
-gulp.task('html', ['clean'], function () {
+gulp.task('html', function () {
     gulp.src('views/**/*.html')
         .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(concat('index.html'))
@@ -55,35 +55,32 @@ gulp.task('html', ['clean'], function () {
 
 });
 
-gulp.task('css', ['clean'], function () {
+gulp.task('css', function () {
     return gulp.src('public/stylesheets/*.css')
         .pipe(cleanCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest('./dist'));
+        .pipe(gulp.dest('./dist/public/stylesheets'));
 });
 
 //Minify JS files and put them in dist folder
-gulp.task('js', ['clean'], function () {
+gulp.task('js', function () {
    gulp.src('public/javascripts/*.js')//minify all of the js in public folder
       .pipe(concat('all.js'))
       .pipe(uglify())
-      .pipe(gulp.dest('./dist'))//put the new js in the dist folder
+      .pipe(gulp.dest('./dist/public/javascripts'))//put the new js in the dist folder
 });
 
-gulp.task('tests', ['clean'], function() {
+gulp.task('tests', function() {
     gulp.src('./spec/*.spec.js')
     // gulp-jasmine works on filepaths so you can't use any plugins before it 
     .pipe(jasmine());
 });
 
 
-
 // Dev task
 gulp.task('dev', ['clean', 'static', 'inject', 'js', 'css', 'html'], function() { 
     runSequence('lint', 'tests', function(){});
-    
     console.log('Done.');
 });
-
 
 
 // Clean task
