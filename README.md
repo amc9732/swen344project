@@ -1,20 +1,32 @@
 #Student Enrollment System#
 
-DEVELOPMENT
+##LOCAL DEVELOPMENT##
 
-Any changes made to the code will automatically update in your development environment. First install dependencies with `npm install`, then run the server with `gulp`, and navigate to `localhost:5000` to view the page.
+Any changes made to the code will automatically update in your development environment. First install dependencies with 
 
-The Anatomy of Node Project
+`npm install && bower install`
+
+then run the server with `node ./bin/www`, and navigate to `localhost:3000` to view the page.
+
+The Anatomy of our Node Project:
+
     Right now the root directory of our Node project should look something like this:
     
     app.js
     bin/
     node_modules/
     package.json
+    gulpfile.js
+    jasmine.json
     public/
     routes/
     views/
-    Let's go step by step and explain what each folder/file is:
+
+    gulpfile.js - This contains a set of tasks that can be run in order to do specific development tasks. Tasks include:
+        `gulp tests` - Run all .spec.js Jasmine files within the ./spec folder
+        `gulp clean` - Simply deletes the ./dist/views folder using a `rm -rf` plugin
+        The rest are commented in the source code for reference.
+        
     
     app.js - This file is the launching point for our app. We use it to import all other server files including modules, configure routes, open database connections, and just about anything else we can think of.
     
@@ -33,17 +45,6 @@ The Anatomy of Node Project
 TESTS
 
 From the root directory, run `gulp tests` to run all jasmine unit tests. This refers to everything within the 'spec' directory. This can be nested and split into folders for organizational reasons, it doesn't all have to be in one file. BUT -- each file does need to have xxxx.spec.js at the end, not just xxxx.js!
-
-#Some of the basic requirements include:#
-Admins should be able to create/remove courses.
-Basic rules should be enforced for each course. This may include a specific year level, or GPA (discuss specific requirements with your customer)
-Courses should have wait lists
-Students should be able to request special access services for a course.
-When students register for a classroom, this information should be automatically sent to the facility management group and roster. You will need to work with the Facility Management group on this requirement.
-External Connection
-
-Each user may chhoose to link their account with Linked in. In that case, it will automatically bring in their LinkedIn photo, and other relevant information (to be discussed with customer)
-
 
 #Contributors
 Tyler
