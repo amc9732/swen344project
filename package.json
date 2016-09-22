@@ -3,10 +3,12 @@
   "version": "0.0.0",
   "private": true,
   "scripts": {
-    "start": "node ./bin/www",
+    "start": "npm start",
     "test": "istanbul cover --include-all-sources gulp tests"
   },
   "dependencies": {
+    "angular2-jwt": "^0.1.23",
+    "auth0-lock": "^10.3.0",
     "body-parser": "~1.15.1",
     "cookie-parser": "~1.4.3",
     "debug": "~2.2.0",

@@ -49,7 +49,7 @@ gulp.task('inject', function() {
 //Then place in dist folder
 gulp.task('html', function () {
     gulp.src('views/**/*.html')
-        //.pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(htmlmin({collapseWhitespace: true}))
         .pipe(concat('index.html'))
         .pipe(gulp.dest('./dist'));
 
@@ -99,7 +99,7 @@ gulp.task('lint', function() {
 //Static content
 gulp.task('static', function() {
     gulp.src('public/images/*')
-        .pipe(gulp.dest('dist/public/images/'));
+        .pipe(gulp.dest('dist/'));
 })
 
 // Browserify task
