@@ -16,14 +16,8 @@
   ],
   "homepage": "https://github.com/tlr3552/swen344project",
   "private": true,
-  "ignore": [
-    "node_modules",
-    "bower_components"
-  ],
-
   "dependencies": {
-    "bootstrap": "https://github.com/twbs/bootstrap.git#v4-dev",
-    "gulp": "https://github.com/gulpjs/gulp.git",
-    "angular-material": "https://github.com/angular/bower-material.git"
+    "angular-material": "https://github.com/angular/material.git",
+    "angular": "^1.5.8"
   }
 }

@@ -1,4 +1,6 @@
 #!/bin/sh
-gulp clean
-
 gulp
+
+sleep 1
+
+gulp dev-server
