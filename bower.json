@@ -17,7 +17,5 @@
   "homepage": "https://github.com/tlr3552/swen344project",
   "private": true,
   "dependencies": {
-    "angular-material": "https://github.com/angular/material.git",
-    "angular": "^1.5.8"
   }
 }

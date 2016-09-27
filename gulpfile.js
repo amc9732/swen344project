@@ -18,90 +18,63 @@ var gulp = require('gulp'),
     livereload = require('gulp-livereload'),
     gutil = require('gulp-util'),
     rename = require('gulp-rename'),
-    sass = require('gulp-sass');
+    sass = require('gulp-sass'),
+    mainBowerFiles = require('gulp-main-bower-files')
 
-//take our JS inside app/public/javascripts, minify them, and place them in app/build
+//take our JS inside app/public/javascripts, minify them, and place them in dist
 gulp.task('minifyjs', function() {
 
     return gulp.src('./app/public/javascripts/**/*.js')
         .pipe(uglify())
-        .pipe(gulp.dest('./app/build'));
-});
-
-//same as minifyjs, except for bower_components
-// gulp.task('wiredep', function () {
-//     var wiredep = require('wiredep');
-//     var options = {
-//         ignorePath: '..'
-//     }
-    
-//     var target = gulp.src('./app/index.html');
-//     var js = gulp.src(wiredep().js);
-//     //var css = gulp.src(wiredep(options).css);
-
-//     return target
-//         .pipe(inject(js.pipe(concat('bower.js'))))
-//         .pipe(gulp.dest('./app'));
-//         //.pipe(inject(css.pipe(concat('bower.css')).pipe(gulp.dest('./styles'))))
-// });    
-
-//grab all minified js files from app/ and bower_components/ and combine into one all.js file, put it in ./app
-gulp.task('concatjs', function() {
-
-    var source = gulp.src('./app/build/*.min.js', {read: false});
-
-    return source
-        .pipe(concat('all.min.js'))
-        .pipe(gulp.dest('./app'));
-});
-
-//Separate task for minifying app.js and placing inside /dist/
-gulp.task('minify-appjs', function() {
-    var source = './app/app.js';
-
-    return gulp.src(source)
-        .pipe(uglify())
-        .pipe(gulp.dest('./app'))
+        .pipe(concat('bundle.min.js'))
+        .pipe(gulp.dest('dist'));
 });
 
 //take the minified and combined all.min.js file and inject it into index.html, 
 //then put index.html into /dist/ 
 gulp.task('injectjs', function() {
-    var source = gulp.src('./app/build/all.min.js');
+    var source = gulp.src('./dist/bundle.min.js');
     var target = gulp.src('./app/index.html');
 
     return target
-        .pipe(inject(source, {ignorePath: 'app'}))
-        .pipe(gulp.dest('./app'));
+        .pipe(inject(source, {ignorePath: 'dist'}))
+        .pipe(gulp.dest('dist'))
+        .pipe(gulp.dest('app'));//put it both places so we can see it in app/index.html too
 });
 
-// gulp.task('minifycss', function() {
-//     var source = gulp.src('app/public/stylesheets/**/*.css');
+gulp.task('buildbower', function() {
+    return gulp.src('./bower.json')
+        .pipe(mainBowerFiles())
+        .pipe(gulp.dest('dist/bower_components'))
+});
 
-//     return source
-//         .pipe(rename('styles.min.css'))
-//         .pipe(cleanCSS({compatibility: 'ie8'}))
-//         .pipe(gulp.dest('./app'));
-// });
+//same as minifyjs, except for bower_components
+gulp.task('wiredep', function () {
+    var wiredep = require('wiredep').stream;    
+    gulp.src('app/index.html')
+        .pipe(wiredep({ignorePath: '..'}))
+        .pipe(gulp.dest('app'))
+        .pipe(gulp.dest('dist'));
+});
 
-// //SAME as above JS files, but for css. more files will be aded to this, once we have our own styles
-// gulp.task('concatcss', function() {
-//     var files = gulp.src('./bower_components/**/*.scss');
+gulp.task('minifycss', function() {
+    var source = gulp.src('app/public/stylesheets/**/*.css');
 
-//     return files
-//         .pipe(sass().on('error', sass.logError))
-//         .pipe(concat('styles.css'))
-//         .pipe(gulp.dest('./app/public/stylesheets'));
-// });
+    return source
+        .pipe(rename('styles.min.css'))
+        .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(gulp.dest('app'))
+        .pipe(gulp.dest('dist'));
+});
 
-// gulp.task('injectcss', function() {
-//     var target = gulp.src('./app/index.html');
-//     var source = gulp.src('app/styles.css');
+gulp.task('injectcss', function() {
+    var target = gulp.src('dist/index.html');
 
-//     return target
-//         .pipe(inject(source), {ignorePath: 'app'})
-//         .pipe(gulp.dest('./dist'));
-// });
+    return target
+        .pipe(inject(gulp.src('app/styles.min.css', {read: false}), {ignorePath: 'app'}))
+        .pipe(gulp.dest('app'))
+        .pipe(gulp.dest('dist'));
+});
 
 //run dev server
 gulp.task('dev-server', function() {
@@ -153,14 +126,12 @@ gulp.task('dev', function() {
     runSequence(
         'clean', 
         'static', 
-        'minify-appjs',
         'minifyjs',
-        'concatjs',
         'injectjs',
-        //'wiredep',
-        // 'minifycss',
-        // 'concatcss',
-        // 'injectcss',
+        'wiredep',
+        'buildbower',
+        'minifycss',
+        'injectcss',
         'lint',
         'tests'
     );
@@ -169,7 +140,7 @@ gulp.task('dev', function() {
 
 // Deletes the dist folder and the minified and compiled allbower.js file in app/public/javascripts
 gulp.task('clean', function() {
-    return gulp.src(['./dist/', './app/public/javascripts/allbower.*'], { read: false }) // much faster
+    return gulp.src(['./dist/'], { read: false }) // much faster
         .pipe(rimraf({force: true}));
 });
 
