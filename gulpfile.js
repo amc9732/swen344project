@@ -27,7 +27,7 @@ gulp.task('minifyjs', function() {
     return gulp.src('./app/public/javascripts/**/*.js')
         .pipe(uglify())
         .pipe(concat('bundle.min.js'))
-        .pipe(gulp.dest('dist'));
+        .pipe(gulp.dest('dist'))
 });
 
 //take the minified and combined all.min.js file and inject it into index.html, 
@@ -91,9 +91,23 @@ gulp.task('injectcss', function() {
 //run dev server
 gulp.task('dev-server', function() {
   connect.server({
-    root: 'dist',
+    root: 'app',
     livereload: true
   });
+});
+
+gulp.task('rebuild', function() {
+    runSequence(
+        'minifyjs',
+        'injectjs',
+        'wiredep',
+        'buildappjs',
+        'buildbower',
+        'buildroutes',
+        'minifycss',
+        'injectcss',
+        'dev-server'
+    );
 });
 
 // Watch task, which listens for changes to anything files/folders you give it (currently only JS), and then outputs
@@ -107,21 +121,12 @@ gulp.task('watch', function () {
         livereload.changed(file.path);
         gutil.log(gutil.colors.yellow('JS changed' + ' (' + file.path + ')'));
     });
-
-    //No SCSS yet, but we might want -- this will automatically recompile and inject changed SCSS files
-
-    // SASS/CSS change + prints log in console
-    // On SASS change, call and run task 'sass'
-    // gulp.watch('sass/*.scss', ['sass']).on('change', function(file) {
-    //     livereload.changed(file.path);
-    //     gutil.log(gutil.colors.yellow('CSS changed' + ' (' + file.path + ')'));
-    // });
 });
 
-//Runs Jasmine unit tests inside of specs/ and determines code coverage.
+//Runs Jasmine unit tests inside of app/specs/ and determines code coverage.
 //Puts code coverage results inside a new reports/ directory.
 gulp.task('tests', function() {
-    return gulp.src('specs/*.spec.js')
+    return gulp.src('app/specs/*.spec.js')
         .pipe(cover.instrument({
             pattern: ['app/**/*.js'],
             debugDirectory: 'debug'
@@ -133,7 +138,7 @@ gulp.task('tests', function() {
 });
 
 
-// Dev task. Ordering of these tasks in this array is CRITICAL.
+// Dev task. The order these tasks is CRITICAL, please don't change without a group discussion.
 gulp.task('dev', function() { 
     runSequence(
         'clean', 
@@ -147,14 +152,15 @@ gulp.task('dev', function() {
         'minifycss',
         'injectcss',
         'lint',
-        'tests'
+        'tests',
+        'dev-server'
     );
 });
 
 
 // Deletes the dist folder and the minified and compiled allbower.js file in app/public/javascripts
 gulp.task('clean', function() {
-    return gulp.src(['./dist/'], { read: false }) // much faster
+    return gulp.src(['./dist/', 'app/styles.min.css'], { read: false }) // much faster
         .pipe(rimraf({force: true}));
 });
 
