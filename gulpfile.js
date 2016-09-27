@@ -42,6 +42,18 @@ gulp.task('injectjs', function() {
         .pipe(gulp.dest('app'));//put it both places so we can see it in app/index.html too
 });
 
+gulp.task('buildroutes', function() {
+    return gulp.src('app/routes/*.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('dist/routes'))
+});
+
+gulp.task('buildappjs', function() {
+    return gulp.src('app/app.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('dist'));
+});
+
 gulp.task('buildbower', function() {
     return gulp.src('./bower.json')
         .pipe(mainBowerFiles())
@@ -129,7 +141,9 @@ gulp.task('dev', function() {
         'minifyjs',
         'injectjs',
         'wiredep',
+        'buildappjs',
         'buildbower',
+        'buildroutes',
         'minifycss',
         'injectcss',
         'lint',
