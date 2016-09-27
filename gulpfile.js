@@ -124,9 +124,9 @@ gulp.task('watch', function () {
 gulp.task('tests', function() {
     return gulp.src('app/specs/*.spec.js')
         .pipe(cover.instrument({
-            pattern: ['app/**/*.js'],
-            debugDirectory: 'debug'
-        }))
+             pattern: ['app/**/*.js']
+        //     debugDirectory: 'debug'
+         }))
         .pipe(jasmine())
         .pipe(cover.gather())
         .pipe(cover.format())

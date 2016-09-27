@@ -28,12 +28,15 @@ Explained(code comments are more specific):
     |   |   app.js     - entry point to our application.
     |   |   index.html - the HTML file. all other necessary HTML will get used via Angular directives and controllers.
     |   |   routes/ - exactly what you think it does, holds routing information for different parts of the app
-    |   node_modules/ - contains all app dependency definitions, only gets run locally or during deployment. not in repo
-    |   coverage/ - temporary folder containing code coverage results, does not belong in the repo (development use only)
-    |   specs/ - contains Jasmine unit tests
+    |   |   specs/ - contains Jasmine unit tests
     |   bower.json - contains dependencies like node_modules/, but more specific ones like Angular Material or Bootstrap would go here
     |   gulpfile.js - very important for development, see the comments in the file for what each gulp task does
     |   package.json - defines what Node packages we need. Different gulp plugins, Angular itself, and Express are included here
+    |   .coverdata/ - related to code coverage results when running `gulp tests`
+    |   .coverrun - related to code coverage functionality when running `gulp tests`
+    |   reports/ - contains an actual HTML file that displays the code coverage results when running `gulp tests`
+    |   README.md - this file
+    |   run.sh - .gitignore keeps ignoring this file, and I don't yet know why... feel free to use it by running `. run.sh` from root
 
         
 DEVELOPMENT
