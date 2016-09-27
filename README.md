@@ -4,37 +4,37 @@ The Anatomy of our Node Project:
 
 Right now the root directory of our Node project should look something like this:
 
-app/
-    bin/
-    templates/
-    public/
-    routes/
-    app.js
-    index.html
-node_modules/
-coverage/
-specs/
-bower.json
-package.json
-gulpfile.js
+    app/
+        bin/
+        templates/
+        public/
+        routes/
+        app.js
+        index.html
+    node_modules/
+    coverage/
+    specs/
+    bower.json
+    package.json
+    gulpfile.js
 
 Explained(code comments are more specific):
 
-swen344project/
-|  app/ - contains our actual code, Javascript/Angular code, HTML templates, any styles, and our app.js and index.html.
-|   |   bin/       - figuring this out myself...
-|   |   public/    - contains AngularJS/any kind of javascript code, any CSS/SCSS/LESS, and static content like images.
-|   |   templates  - HTML templates that our Angular directives will use.
-|   |   app.js     - entry point to our application.
-|   |   index.html - the HTML file. all other necessary HTML will get used via Angular directives and controllers.
-|   |   routes/ - exactly what you think it does, holds routing information for different parts of the app
-|   node_modules/ - contains all app dependency definitions, only gets run locally or during deployment. not in repo
-|   coverage/ - temporary folder containing code coverage results, does not belong in the repo (development use only)
-|   specs/ - contains Jasmine unit tests
-|   bower.json - contains dependencies like node_modules/, but more specific ones like Angular Material or Bootstrap would go here
-|   gulpfile.js - very important for development, see the comments in the file for what each gulp task does
-|   package.json - defines what Node packages we need. Different gulp plugins, Angular itself, and Express are included here
-|   
+    swen344project/
+    |  app/ - contains our actual code, Javascript/Angular code, HTML templates, any styles, and our app.js and index.html.
+    |   |   bin/       - figuring this out myself...
+    |   |   public/    - contains AngularJS/any kind of javascript code, any CSS/SCSS/LESS, and static content like images.
+    |   |   templates  - HTML templates that our Angular directives will use.
+    |   |   app.js     - entry point to our application.
+    |   |   index.html - the HTML file. all other necessary HTML will get used via Angular directives and controllers.
+    |   |   routes/ - exactly what you think it does, holds routing information for different parts of the app
+    |   node_modules/ - contains all app dependency definitions, only gets run locally or during deployment. not in repo
+    |   coverage/ - temporary folder containing code coverage results, does not belong in the repo (development use only)
+    |   specs/ - contains Jasmine unit tests
+    |   bower.json - contains dependencies like node_modules/, but more specific ones like Angular Material or Bootstrap would go here
+    |   gulpfile.js - very important for development, see the comments in the file for what each gulp task does
+    |   package.json - defines what Node packages we need. Different gulp plugins, Angular itself, and Express are included here
+
         
 DEVELOPMENT
 
