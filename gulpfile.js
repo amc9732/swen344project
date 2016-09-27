@@ -5,7 +5,6 @@ var gulp = require('gulp'),
     jshint = require('gulp-jshint'),
     concat = require('gulp-concat'),
     rimraf = require('gulp-rimraf'),
-    autoprefixer = require('gulp-autoprefixer'),
     jasmine = require('gulp-jasmine'),
     cover = require('gulp-coverage'),
     uglify = require('gulp-uglify'),
@@ -14,12 +13,11 @@ var gulp = require('gulp'),
     cleanCSS = require('gulp-clean-css'),
     imagemin = require('gulp-imagemin'),
     runSequence = require('run-sequence'),
-    connect = require('gulp-connect'),
     livereload = require('gulp-livereload'),
     gutil = require('gulp-util'),
     rename = require('gulp-rename'),
-    sass = require('gulp-sass'),
-    mainBowerFiles = require('gulp-main-bower-files')
+    mainBowerFiles = require('gulp-main-bower-files'),
+    nodemon = require('gulp-nodemon');
 
 //take our JS inside app/public/javascripts, minify them, and place them in dist
 gulp.task('minifyjs', function() {
@@ -39,7 +37,6 @@ gulp.task('injectjs', function() {
     return target
         .pipe(inject(source, {ignorePath: 'dist'}))
         .pipe(gulp.dest('dist'))
-        .pipe(gulp.dest('app'));//put it both places so we can see it in app/index.html too
 });
 
 gulp.task('buildroutes', function() {
@@ -48,7 +45,7 @@ gulp.task('buildroutes', function() {
         .pipe(gulp.dest('dist/routes'))
 });
 
-gulp.task('buildappjs', function() {
+gulp.task('buildserverjs', function() {
     return gulp.src('app/app.js')
         .pipe(uglify())
         .pipe(gulp.dest('dist'));
@@ -75,7 +72,6 @@ gulp.task('minifycss', function() {
     return source
         .pipe(rename('styles.min.css'))
         .pipe(cleanCSS({compatibility: 'ie8'}))
-        .pipe(gulp.dest('app'))
         .pipe(gulp.dest('dist'));
 });
 
@@ -83,17 +79,17 @@ gulp.task('injectcss', function() {
     var target = gulp.src('dist/index.html');
 
     return target
-        .pipe(inject(gulp.src('app/styles.min.css', {read: false}), {ignorePath: 'app'}))
-        .pipe(gulp.dest('app'))
+        .pipe(inject(gulp.src('dist/styles.min.css', {read: false}), {ignorePath: 'dist'}))
         .pipe(gulp.dest('dist'));
 });
 
-//run dev server
-gulp.task('dev-server', function() {
-  connect.server({
-    root: 'app',
-    livereload: true
-  });
+//run local dev server on dist/ folder
+gulp.task('dev-server', function () {
+  nodemon({
+    script: 'dist/app.js',
+    ext: 'js html css',
+    env: { 'NODE_ENV': 'development' }
+  })
 });
 
 gulp.task('rebuild', function() {
@@ -146,7 +142,7 @@ gulp.task('dev', function() {
         'minifyjs',
         'injectjs',
         'wiredep',
-        'buildappjs',
+        'buildserverjs',
         'buildbower',
         'buildroutes',
         'minifycss',
@@ -160,7 +156,7 @@ gulp.task('dev', function() {
 
 // Deletes the dist folder and the minified and compiled allbower.js file in app/public/javascripts
 gulp.task('clean', function() {
-    return gulp.src(['./dist/', 'app/styles.min.css'], { read: false }) // much faster
+    return gulp.src(['./dist/', 'app/styles.min.css', 'app/bundle.min.js'], { read: false }) // much faster
         .pipe(rimraf({force: true}));
 });
 

@@ -17,5 +17,6 @@
   "homepage": "https://github.com/tlr3552/swen344project",
   "private": true,
   "dependencies": {
+    "angular-material": "^1.1.1"
   }
 }
