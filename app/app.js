@@ -3,20 +3,44 @@ var app = express();
 var path = require('path');
 var mysql = require('mysql');
 
-console.log('Server started. Serving dist/ folder.');
+var dbconfig = require('./config');
 
-//Connect to our MySQL database hosted on Heroku
-// var connection = mysql.createConnection({
-//     host: "us-cdbr-iron-east-04.cleardb.net",
-//     user: "b421d9d0efc603",
-//     password: "f96ce1ba",
-//     database: "heroku_a783285fe27a1fb"
-// });
-// connection.connect(function(e) {
-//     return e ? 
-//         void console.log("Error connecting to database...") : 
-//         void console.log("Connection to Heroku MySQL database successfully established.")
-// });
+console.log('Node environment currently set to ' + process.env.NODE_ENV);
+
+switch(process.env.NODE_ENV) {
+
+	case 'production':
+    	var connection = mysql.createConnection({
+		    host: dbconfig.prod.hostname,
+		    user: dbconfig.prod.username,
+		    password: dbconfig.prod.password
+		});
+		connection.connect(function(e) {
+
+			if (e) {
+				console.error('Error connecting: \n' + e.stack);
+				return;
+			}  
+		    console.log("Connection to production database successful");
+		});
+		break;
+
+	default:
+		var connection = mysql.createConnection({
+	    	host: dbconfig.dev.hostname,
+	    	user: dbconfig.dev.username,
+	    	password: dbconfig.dev.password,
+	    	database: dbconfig.dev.database
+	    });
+	    connection.connect(function(e) {
+
+	    	if(e) {
+	    		console.error('Error connecting: \n' + e.stack);
+	    		return;
+	    	}
+		    console.log("Connection to development database successful")
+		});
+}
 
 /*
 This is used for production only. Server usage during development 

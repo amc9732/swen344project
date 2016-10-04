@@ -45,8 +45,8 @@ gulp.task('buildroutes', function() {
         .pipe(gulp.dest('dist/routes'))
 });
 
-gulp.task('buildserverjs', function() {
-    return gulp.src('app/app.js')
+gulp.task('buildappjs', function() {
+    return gulp.src(['app/app.js', 'app/config.js'])
         .pipe(uglify())
         .pipe(gulp.dest('dist'));
 });
@@ -92,8 +92,19 @@ gulp.task('dev-server', function () {
   })
 });
 
+//Set Node environment to development
+gulp.task('set-dev-node-env', function() {
+    return process.env.NODE_ENV = 'development';
+});
+
+//Just threw this in here in case we want to test on production.
+gulp.task('set-prod-node-env', function() {
+    return process.env.NODE_ENV = 'production';
+});
+
 gulp.task('rebuild', function() {
     runSequence(
+        'set-dev-node-env',
         'minifyjs',
         'injectjs',
         'wiredep',
@@ -101,8 +112,7 @@ gulp.task('rebuild', function() {
         'buildbower',
         'buildroutes',
         'minifycss',
-        'injectcss',
-        'dev-server'
+        'injectcss'
     );
 });
 
@@ -137,12 +147,13 @@ gulp.task('tests', function() {
 // Dev task. The order these tasks is CRITICAL, please don't change without a group discussion.
 gulp.task('dev', function() { 
     runSequence(
+        'set-prod-node-env',
         'clean', 
         'static', 
         'minifyjs',
         'injectjs',
         'wiredep',
-        'buildserverjs',
+        'buildappjs',
         'buildbower',
         'buildroutes',
         'minifycss',
