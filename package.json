@@ -13,7 +13,7 @@
   },
   "version": "1.0.0",
   "scripts": {
-    "start": "NODE_ENV=production node ../app.js"
+    "start": "NODE_ENV=production node app/app.js"
   },
   "version": "0.0.1",
   "private": true,
