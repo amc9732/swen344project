@@ -17,81 +17,150 @@ var gulp = require('gulp'),
     gutil = require('gulp-util'),
     rename = require('gulp-rename'),
     mainBowerFiles = require('gulp-main-bower-files'),
-    nodemon = require('gulp-nodemon');
+    nodemon = require('gulp-nodemon'),
+    livereload = require('gulp-livereload'),
+    notify = require('gulp-notify'),
+    htmlmin = require('gulp-htmlmin');
 
-//take our JS inside app/public/javascripts, minify them, and place them in dist
-gulp.task('minifyjs', function() {
-
-    return gulp.src('./app/public/javascripts/**/*.js')
-        .pipe(uglify())
-        .pipe(concat('bundle.min.js'))
-        .pipe(gulp.dest('dist'))
-});
-
-//take the minified and combined all.min.js file and inject it into index.html, 
-//then put index.html into /dist/ 
+//Inject everything inside app/js into index.html
 gulp.task('injectjs', function() {
-    var source = gulp.src('./dist/bundle.min.js');
+    var source = gulp.src('./app/js/**/*.js');
     var target = gulp.src('./app/index.html');
 
     return target
-        .pipe(inject(source, {ignorePath: 'dist'}))
-        .pipe(gulp.dest('dist'))
+        .pipe(inject(source, {ignorePath: 'app'}))
+        .pipe(gulp.dest('app'));
 });
+//Inject everything inside app/css into index.html
+gulp.task('injectcss', function() {
+    var source = gulp.src('app/css/**/*.css')
+    var target = gulp.src('app/index.html');
 
-gulp.task('buildroutes', function() {
-    return gulp.src('app/routes/*.js')
-        .pipe(uglify())
-        .pipe(gulp.dest('dist/routes'))
+    return target
+        .pipe(inject(source, {ignorePath: 'app'}))
+        .pipe(gulp.dest('app'));
 });
-
-gulp.task('buildappjs', function() {
-    return gulp.src(['app/app.js', 'app/config.js'])
-        .pipe(uglify())
-        .pipe(gulp.dest('dist'));
-});
-
-gulp.task('buildbower', function() {
-    return gulp.src('./bower.json')
-        .pipe(mainBowerFiles())
-        .pipe(gulp.dest('dist/bower_components'))
-});
-
-//same as minifyjs, except for bower_components
+//Inject all bower_components into index.html
 gulp.task('wiredep', function () {
     var wiredep = require('wiredep').stream;    
     gulp.src('app/index.html')
         .pipe(wiredep({ignorePath: '..'}))
         .pipe(gulp.dest('app'))
-        .pipe(gulp.dest('dist'));
 });
 
-gulp.task('minifycss', function() {
-    var source = gulp.src('app/public/stylesheets/**/*.css');
-
-    return source
-        .pipe(rename('styles.min.css'))
-        .pipe(cleanCSS({compatibility: 'ie8'}))
+//Build the project completely into a dist/ folder for deployment
+//Same as the tasks above
+gulp.task('minifyjs', function() {
+    return gulp.src('./app/js/**/*.js')
+        .pipe(uglify())
+        .pipe(concat('bundle.min.js'))
         .pipe(gulp.dest('dist'));
 });
-
-gulp.task('injectcss', function() {
-    var target = gulp.src('dist/index.html');
-
+gulp.task('buildjs', function() {
+    var source = gulp.src('dist/bundle.min.js');
+    var target = gulp.src('app/index.html');
     return target
-        .pipe(inject(gulp.src('dist/styles.min.css', {read: false}), {ignorePath: 'dist'}))
+        .pipe(inject(source, {ignorePath: 'dist'}))
         .pipe(gulp.dest('dist'));
 });
-
-//run local dev server on dist/ folder
-gulp.task('dev-server', function () {
-  nodemon({
-    script: 'dist/app.js',
-    ext: 'js html css',
-    env: { 'NODE_ENV': 'development' }
-  })
+gulp.task('minifycss', function() {
+    return gulp.src('./app/css/**/*.css')
+        .pipe(cleanCSS({compatibility: 'ie8'}))
+        .pipe(concat('styles.min.css'))
+        .pipe(gulp.dest('dist'));
 });
-
+gulp.task('buildcss', function() {
+    var source = gulp.src('dist/styles.min.css');
+    var target = gulp.src('dist/index.html');
+    return target
+        .pipe(inject(source, {ignorePath: 'dist'}))
+        .pipe(gulp.dest('dist'));
+});
+gulp.task('minifyroutes', function() {
+    return gulp.src('./app/routes/**/*.js')
+        .pipe(uglify())
+        .pipe(concat('routes.min.js'))
+        .pipe(gulp.dest('dist/routes'));
+});
+gulp.task('buildroutes', function() {
+    var source = gulp.src('dist/routes/routes.min.js');
+    var target = gulp.src('dist/index.html');
+    return target
+        .pipe(inject(source, {ignorePath: 'dist'}))
+        .pipe(gulp.dest('dist'));
+});
+gulp.task('buildappjs', function() {
+    return gulp.src('app/app.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('dist'));
+});
+gulp.task('buildconfigjs', function() {
+    return gulp.src('app/config.js')
+        .pipe(uglify())
+        .pipe(gulp.dest('dist'));
+});
+gulp.task('addbowerdist', function() {
+    return gulp.src('./bower.json')
+        .pipe(mainBowerFiles())
+        .pipe(gulp.dest('dist/bower_components'));
+});
+gulp.task('wiredepprod', function() {
+    var wiredep = require('wiredep').stream;    
+    gulp.src('dist/index.html')
+        .pipe(wiredep({ignorePath: '..'}))
+        .pipe(gulp.dest('dist'));
+});
+gulp.task('minifyhtml', function() {
+    return gulp.src('app/templates/*.html')
+        .pipe(htmlmin({collapseWhitespace: true}))
+        .pipe(gulp.dest('dist/templates'));
+});
+gulp.task('server', function() {
+    //runSequence('set-prod-node-env');
+    livereload.listen();
+    nodemon({
+        script: 'app/app.js',
+        ext: 'js html css'
+    }).on('restart', function(){
+        // when the app has restarted, run livereload.
+        gulp.src('app/app.js')
+        .pipe(livereload())
+    });
+});
+//Running `gulp` will initially start the server, run the necessary tasks in sequence,
+//and continue to "listen" for changes, so once you save changes it'll restart the server automatically.
+//NOTE: This runs development build by default, for testing changes locally.
+//To run the prod version locally, run `npm start` from root directory.
+gulp.task('default', function() {
+    runSequence(
+        'set-dev-node-env',
+        'lint',
+        'injectjs',
+        'injectcss',
+        'wiredep',
+        'server'
+    );
+});
+//This task deletes the dist folder, runs linter and unit tests.
+//It then minifies everything, injects the minified files, and puts it in a new dist/ folder.
+gulp.task('buildapp', function() {
+    runSequence(
+        'clean',
+        'lint',
+        'tests',
+        'minifyjs',
+        'buildjs',
+        'minifycss',
+        'buildcss',
+        'minifyroutes',
+        'buildroutes',
+        'buildappjs',
+        'buildconfigjs',
+        'addbowerdist',
+        'wiredepprod',
+        'minifyhtml'
+    );
+});
 //Set Node environment to development
 gulp.task('set-dev-node-env', function() {
     return process.env.NODE_ENV = 'development';
@@ -101,34 +170,6 @@ gulp.task('set-dev-node-env', function() {
 gulp.task('set-prod-node-env', function() {
     return process.env.NODE_ENV = 'production';
 });
-
-gulp.task('rebuild', function() {
-    runSequence(
-        'set-dev-node-env',
-        'minifyjs',
-        'injectjs',
-        'wiredep',
-        'buildappjs',
-        'buildbower',
-        'buildroutes',
-        'minifycss',
-        'injectcss'
-    );
-});
-
-// Watch task, which listens for changes to anything files/folders you give it (currently only JS), and then outputs
-// to console any changes that occur
-gulp.task('watch', function () {
-    
-    livereload.listen();
-
-    // Javascript change + prints log in console
-    gulp.watch('./app/public/javascripts/**/*.js').on('change', function(file) {
-        livereload.changed(file.path);
-        gutil.log(gutil.colors.yellow('JS changed' + ' (' + file.path + ')'));
-    });
-});
-
 //Runs Jasmine unit tests inside of app/specs/ and determines code coverage.
 //Puts code coverage results inside a new reports/ directory.
 gulp.task('tests', function() {
@@ -143,49 +184,25 @@ gulp.task('tests', function() {
         .pipe(gulp.dest('reports'));
 });
 
-
-// Dev task. The order these tasks is CRITICAL, please don't change without a group discussion.
-gulp.task('dev', function() { 
-    runSequence(
-        'set-prod-node-env',
-        'clean', 
-        'static', 
-        'minifyjs',
-        'injectjs',
-        'wiredep',
-        'buildappjs',
-        'buildbower',
-        'buildroutes',
-        'minifycss',
-        'injectcss',
-        'lint',
-        'tests',
-        'dev-server'
-    );
-});
-
-
-// Deletes the dist folder and the minified and compiled allbower.js file in app/public/javascripts
 gulp.task('clean', function() {
-    return gulp.src(['./dist/', 'app/styles.min.css', 'app/bundle.min.js'], { read: false }) // much faster
+    return gulp.src(['./dist/'], { read: false }) // much faster
         .pipe(rimraf({force: true}));
 });
 
 // linter task
 gulp.task('lint', function() {
-    return gulp.src(['app/javascripts/*.js', 'app/javascripts/**/*.js', 'spec/*.js'])
+    return gulp.src(['app/js/*.js', 'app/js/**/*.js', 'spec/*.js'])
         .pipe(jshint())
         .pipe(jshint.reporter('jshint-stylish'));
 });
 
 // Minifies any images if possible, and puts it inside /dist/ folder
 gulp.task('static', function() {
-    return gulp.src('app/public/images/*')
+    return gulp.src('app/images/*')
         .pipe(imagemin())
-        .pipe(gulp.dest('dist/public/images/'));
+        .pipe(gulp.dest('dist/images/'));
 });
 
-//'default' is the task that is run if one just runs "gulp" without specifying a task.
-gulp.task('default', ['dev']);
+
 
 

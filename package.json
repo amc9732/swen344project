@@ -28,7 +28,6 @@
     "zone.js": "^0.6.25"
   },
   "devDependencies": {
-    "connect-livereload": "^0.6.0",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-browserify": "^0.5.1",
@@ -45,6 +44,7 @@
     "gulp-jshint": "^2.0.1",
     "gulp-livereload": "^3.8.1",
     "gulp-main-bower-files": "^1.5.3",
+    "gulp-notify": "^2.2.0",
     "gulp-rename": "^1.2.2",
     "gulp-rimraf": "^0.2.0",
     "gulp-sass": "^2.3.2",

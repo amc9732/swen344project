@@ -1,7 +1,6 @@
 {
   "name": "enrollmentsystem",
   "description": "SWEN 344 Enrollment System Project",
-  "main": "/dist/",
   "authors": [
     "Tyler Russell <tlr3552@rit.edu>",
     "Joshua James",

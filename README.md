@@ -41,13 +41,13 @@ Explained(code comments are more specific):
         
 DEVELOPMENT
 
-After cloning the project, you'll need to run `npm install` and probably `bower install` as well in order to install all Node packages into the project. I made the .gitignore file include this node_modules folder because when its deployed to 'production', it will get built on the server anyways as is common practice.
+After cloning the project, you'll need to run `npm install` and probably `bower install` as well in order to install all packages into the project. I made the .gitignore file include this node_modules folder because when its deployed to 'production', it will get built on the server/Heroku anyways as is common practice.
 
 To run the app, simply go to the root directory and run `gulp`. This will run the `default` task within `gulpfile.js`. This in turn runs everything that is passed to the runSequence() method. See `gulpfile.js` for details. Running 'gulp' starts by deleting the /dist/ folder, then it minifies, combines, and injects all Javascript and CSS in app/ and bower_components/ into index.html. Then it puts all the needed files into a new dist/ folder and runs the development server on that new dist/ folder. The functionality to include any HTMl templates from app/templates into the dist/ folder still doesn't exist, but we have no templates yet to worry about.
 
-Run the server locally: `gulp`
+Run the server locally: `. run.sh`
 
-After making changes, simply refresh the page -- you don't need to rerun everything just run `gulp rebuild`, which is a little quicker that just running 'gulp' because it omits linting and unit tests. I'll look into autorefreshing the project if everyone gets annoyed with this way. One way I went to make it a bit fast is creating a shell script called `run.sh`, and adding the gulp command to it so its easier to type.
+After making any changes, go back to terminal and press CTRL+C to stop the server. The just re-run the above command `. run.sh' and 
 
 
 TESTING
