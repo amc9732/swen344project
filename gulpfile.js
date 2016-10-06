@@ -94,11 +94,6 @@ gulp.task('buildappjs', function() {
         .pipe(uglify())
         .pipe(gulp.dest('dist'));
 });
-gulp.task('buildconfigjs', function() {
-    return gulp.src('app/config.js')
-        .pipe(uglify())
-        .pipe(gulp.dest('dist'));
-});
 gulp.task('addbowerdist', function() {
     return gulp.src('./bower.json')
         .pipe(mainBowerFiles())
@@ -156,7 +151,6 @@ gulp.task('buildapp', function() {
         'minifyroutes',
         'buildroutes',
         'buildappjs',
-        'buildconfigjs',
         'addbowerdist',
         'wiredepprod',
         'minifyhtml'

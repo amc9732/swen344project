@@ -3,17 +3,17 @@ var app = express();
 var path = require('path');
 var mysql = require('mysql');
 
-var dbconfig = require('./config');
-
 console.log('Node environment currently set to ' + process.env.NODE_ENV);
 
+//process.env['xxxxx'] are environment variables set in Heroku, so its securely located
+//and dont need a config file anymore
 switch(process.env.NODE_ENV) {
 
 	case 'production':
     	var connection = mysql.createConnection({
-		    host: dbconfig.prod.hostname,
-		    user: dbconfig.prod.username,
-		    password: dbconfig.prod.password
+		    host: process.env['PROD_HOSTNAME'],
+		    user: process.env['PROD_USERNAME'],
+		    password: process.env['PROD_PASSWORD']
 		});
 		connection.connect(function(e) {
 
@@ -27,10 +27,10 @@ switch(process.env.NODE_ENV) {
 
 	default:
 		var connection = mysql.createConnection({
-	    	host: dbconfig.dev.hostname,
-	    	user: dbconfig.dev.username,
-	    	password: dbconfig.dev.password,
-	    	database: dbconfig.dev.database
+	    	host: process.env['DEV_HOSTNAME'],
+		    user: process.env['DEV_USERNAME'],
+		    password: process.env['DEV_PASSWORD'],
+	    	database: process.env['DEV_DATABASE']
 	    });
 	    connection.connect(function(e) {
 
