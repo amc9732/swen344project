@@ -2,13 +2,13 @@ var express = require('express');
 var app = express();
 var path = require('path');
 var mysql = require('mysql');
+require('dotenv').config();//allows us to use the environment variables from Heroku, which are also in .env
 
 console.log('Node environment currently set to ' + process.env.NODE_ENV);
 
 //process.env['xxxxx'] are environment variables set in Heroku, so its securely located
 //and dont need a config file anymore
 switch(process.env.NODE_ENV) {
-
 	case 'production':
     	var connection = mysql.createConnection({
 		    host: process.env['PROD_HOSTNAME'],
