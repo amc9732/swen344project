@@ -47,6 +47,11 @@ gulp.task('wiredep', function () {
         .pipe(wiredep({ignorePath: '..'}))
         .pipe(gulp.dest('app'))
 });
+gulp.task('addbower', function() {
+    return gulp.src('./bower.json')
+        .pipe(mainBowerFiles())
+        .pipe(gulp.dest('app/bower_components'));
+});
 
 //Build the project completely into a dist/ folder for deployment
 //Same as the tasks above
@@ -111,7 +116,7 @@ gulp.task('minifyhtml', function() {
         .pipe(gulp.dest('dist/templates'));
 });
 gulp.task('server', function() {
-    //runSequence('set-prod-node-env');
+    runSequence('set-dev-node-env');
     livereload.listen();
     nodemon({
         script: 'app/app.js',
@@ -125,12 +130,14 @@ gulp.task('server', function() {
 });
 //Running `gulp` will initially start the server, run the necessary tasks in sequence,
 //and continue to "listen" for changes, so once you save changes it'll restart the server automatically.
-//NOTE: This runs development build by default, for testing changes locally.
+//NOTE: This runs development build by default, for testing changes locally. See README on how to test in PROD
 gulp.task('default', function() {
     runSequence(
+        'clean',
         'lint',
         'injectjs',
         'injectcss',
+        'addbower',
         'wiredep',
         'server'
     );
@@ -178,7 +185,7 @@ gulp.task('tests', function() {
 });
 
 gulp.task('clean', function() {
-    return gulp.src(['./dist/'], { read: false }) // much faster
+    return gulp.src(['./dist/', './app/bower_components'], { read: false }) // much faster
         .pipe(rimraf({force: true}));
 });
 
