@@ -130,7 +130,8 @@ gulp.task('server', function() {
 //Running `gulp` will initially start the server, run the necessary tasks in sequence,
 //and continue to "listen" for changes, so once you save changes it'll restart the server automatically.
 //NOTE: This runs development build by default, for testing changes locally.
-//To run the prod version locally, run `npm start` from root directory.
+//To run the prod version locally, you need to go to package.json and inside "scripts", change
+//"NODE_ENV=production node app.js" to "NODE_ENV=production node dist/app.js"
 gulp.task('default', function() {
     runSequence(
         'set-dev-node-env',
