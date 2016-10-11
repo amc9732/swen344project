@@ -24,7 +24,7 @@ var gulp = require('gulp'),
 
 //Inject everything inside app/js into index.html
 gulp.task('injectjs', function() {
-    var source = gulp.src('./app/js/**/*.js');
+    var source = gulp.src(['./app/js/**/*.js', 'app/routes/**/*.js']);
     var target = gulp.src('./app/index.html');
 
     return target

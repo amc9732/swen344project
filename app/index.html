@@ -1,10 +1,11 @@
 <!DOCTYPE html>
-<html>
+<html ng-app="EnrollmentSystem">
   <head>
     <meta charset="UTF-8">
     <title>Enrollment System</title>
     
     <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+    <base href="/"/>
     <!-- inject:css -->
   	<link rel="stylesheet" href="/css/styles.css">
   	<!-- endinject -->
@@ -12,7 +13,11 @@
     <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
     <!-- endbower -->
   </head>
-  <body ng-app="EnrollmentSystem">
+  <body ng-controller="mainController">
+
+    <div ng-view>
+    
+    </div>
 
     <!-- bower:js -->
     <script src="/bower_components/angular/angular.js"></script>
@@ -20,12 +25,12 @@
     <script src="/bower_components/angular-aria/angular-aria.js"></script>
     <script src="/bower_components/angular-messages/angular-messages.js"></script>
     <script src="/bower_components/angular-material/angular-material.js"></script>
+    <script src="/bower_components/angular-route/angular-route.js"></script>
     <!-- endbower -->
-  	
-    <h1>Under the C is up and running!!</h1>
   	
     <!-- inject:js -->
   	<script src="/js/app.modules.js"></script>
+  	<script src="/routes/routing.js"></script>
   	<!-- endinject -->
     
   </body>
