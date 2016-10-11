@@ -29,9 +29,10 @@ DEVELOPMENT
 After cloning the project, you'll need to run `npm install` and probably `bower install` as well in order to install all packages into the project. 
 
 To run the app locally:
-    dev environment(using dev DB):
+    
+    Dev environment(using dev DB):
         1) run `gulp`
-    prod environment. Uses optimized build, and prod DB which is on the VM. Not likely to need to do this much:
+    Prod environment: Uses optimized build, and prod DB which is on the VM. Not likely to need to do this much:
         1) Go to gulpfile.js, inside the "server" task.
         2) Within the runSequence() call, change the text that says "dev" to "prod".
         3) Change the 2 references to `app/app.js` to `dist/app.js`.
