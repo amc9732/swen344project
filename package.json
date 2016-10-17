@@ -33,6 +33,7 @@
     "zone.js": "^0.6.25"
   },
   "devDependencies": {
+    "frisby": "^0.8.5",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
     "gulp-browserify": "^0.5.1",

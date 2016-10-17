@@ -2,9 +2,8 @@ angular.module('ExampleAPIModule', [])
 
 	.controller('ExampleAPIController', function($scope, $http) {
 	    
-	    $http.get('http://rest-service.guides.spring.io/greeting')
-	        
-	        .then(function(response) {
-	            $scope.greeting = response.data;
+	    $http.get('https://jsonplaceholder.typicode.com/posts/1').
+	        then(function(response) {
+	            $scope.json = response.data;
 	        });
 	});
