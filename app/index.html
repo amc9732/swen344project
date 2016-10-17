@@ -15,6 +15,13 @@
   </head>
   <body ng-controller="mainController">
 
+    <div ng-controller="ExampleAPIController">
+      <p>This is an example of how to consume an API using Angular.</p>
+      <p>The ID is {{greeting.id}}</p>
+      <p>The content is {{greeting.content}}</p>
+    </div></br></br></br>
+
+    <p>This shows how controllers work, see routes/routing.js</p>
     <div ng-view>
     
     </div>
@@ -29,6 +36,7 @@
     <!-- endbower -->
   	
     <!-- inject:js -->
+  	<script src="/js/APIController.js"></script>
   	<script src="/js/app.modules.js"></script>
   	<script src="/routes/routing.js"></script>
   	<!-- endinject -->
