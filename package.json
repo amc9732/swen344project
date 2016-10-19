@@ -8,7 +8,8 @@
     "344"
   ],
   "scripts": {
-    "start": "NODE_ENV=production node app/app.js"
+    "start": "NODE_ENV=production node app/app.js",
+    "test": "karma start karma.conf.js"
   },
   "engines": {
     "node": "6.4.0",
@@ -33,6 +34,7 @@
     "zone.js": "^0.6.25"
   },
   "devDependencies": {
+    "angular-mocks": "^1.5.8",
     "frisby": "^0.8.5",
     "gulp": "^3.9.1",
     "gulp-autoprefixer": "^3.1.1",
@@ -60,6 +62,8 @@
     "jasmine-node": "^1.14.5",
     "jshint": "^2.9.3",
     "jshint-stylish": "^2.2.1",
+    "karma-chrome-launcher": "^2.0.0",
+    "karma-jasmine": "^1.0.2",
     "main-bower-files": "^2.13.1",
     "morgan": "^1.7.0",
     "run-sequence": "^1.2.2",

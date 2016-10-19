@@ -1,24 +1,24 @@
-var frisby = require('frisby');
-frisby.create('Get hello world API example JSON')
-  .get('http://rest-service.guides.spring.io/greeting')
-  .expectStatus(200)
-  .expectHeaderContains('content-type', 'application/json')
-  .expectJSON('0', {
-    place: function(val) { expect(val).toMatchOrBeNull("Oklahoma City, OK"); }, // Custom matcher callback
-    user: {
-      verified: false,
-      location: "Oklahoma City, OK",
-      url: "http://brightb.it"
-    }
-  })
-  .expectJSONTypes('0', {
-    id_str: String,
-    retweeted: Boolean,
-    in_reply_to_screen_name: function(val) { expect(val).toBeTypeOrNull(String); }, // Custom matcher callback
-    user: {
-      verified: Boolean,
-      location: String,
-      url: String
-    }
-  })
-.toss();
+it('should grab the JSON object successfully', inject(function($http) {
+
+    var $scope = {};
+
+    // get the data
+    $http.get('https://jsonplaceholder.typicode.com/posts/1')
+        .success(function(data, status, headers, config) {
+            $scope.testData = data;
+        });
+
+    $httpBackend
+        .when('GET', function(url) {
+            return url.indexOf('http://localhost/') !== -1;
+        })
+
+    .respond(200, { data: 'value' });
+
+
+    $httpBackend.flush();
+
+    expect($scope.fooData).toEqual({ data: 'value' });
+    expect($scope.barData).toEqual({ data: 'value' });
+
+}));

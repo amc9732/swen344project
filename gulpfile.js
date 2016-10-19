@@ -173,7 +173,7 @@ gulp.task('set-prod-node-env', function() {
 //Runs Jasmine unit tests inside of app/specs/ and determines code coverage.
 //Puts code coverage results inside a new reports/ directory.
 gulp.task('tests', function() {
-    return gulp.src('app/specs/*.spec.js')
+    return gulp.src('app/specs/**/*.spec.js')
         .pipe(cover.instrument({
              pattern: ['app/**/*.js']
         //     debugDirectory: 'debug'
