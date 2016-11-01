@@ -6,3 +6,4 @@
 /reports/
 .coverrun
 .env
+.DS_Store
