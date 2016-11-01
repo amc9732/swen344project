@@ -1,32 +1,12 @@
 ##Student Enrollment System##
-
-The Anatomy of our Node Project:
-
-swen344project/
-    .coverdata/ - related to code coverage results when running `gulp tests`
-    app/
-        bower_components - contains the primary files needed for injection from the upper level bower_components directory
-        css - contains any and all of our CSS for the app
-        images - contains any images of any kind for the app
-        js - contains our javascript. angular code goes in here.
-        routes/ - exactly what you think it does, holds routing information for different parts of the app
-        specs/ - contains Jasmine unit tests
-        templates  - HTML templates that our Angular directives will use.
-        app.js     - entry point to our application.
-        index.html - the HTML file. all other necessary HTML will get used via Angular directives and controllers.
-    .coverrun - related to code coverage functionality when running `gulp tests`
-    .env - secret file containing credentials for connections to DB from local computer. this should always be gitignored.
-    .gitignore - contains a list of files/folders not to be commited to the repo
-    bower.json - contains dependencies like node_modules/, but more specific ones like Bootstrap/Material would go here
-    gulpfile.js - very important for development, see the comments in the file for what each gulp task does
-    package.json - defines what Node packages we need. Different gulp plugins, Angular itself, and Express are included here
-    reports/ - contains an actual HTML file that displays the code coverage results when running `gulp tests`
-    README.md - this file
-
         
 DEVELOPMENT
 
-After cloning the project, you'll need to run `npm install` and probably `bower install` as well in order to install all packages into the project. 
+Install dependencies and get credentials:
+
+1) `npm install`
+2) `bower install`
+3) Get the .env file that contains various private credentials for connecting to different parts of the app/db/etc.
 
 To run the app locally:
     
@@ -42,7 +22,9 @@ To run the app locally:
 
 TESTING
 
-From the root directory, run `gulp tests` to run all jasmine unit tests.  This refers to everything within the 'app/spec' directory. This can be nested and split into folders for organizational reasons, it doesn't all have to be in one file. BUT -- each file does need to have xxxx.spec.js at the end, not just xxxx.js!
+From the projects root directory, run `karma start`.
+
+This will open a new browser window to run the tests, close it, then output detailed results to the terminal window.
 
 #Contributors
 Tyler Russell
