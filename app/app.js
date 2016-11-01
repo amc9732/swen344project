@@ -6,41 +6,43 @@ require('dotenv').config();//allows us to use the environment variables from Her
 
 console.log('Node environment currently set to ' + process.env.NODE_ENV);
 
+//COMMENTED OUT FOR NOW UNTIL WE FIGURE OUT WHEN WE WILL ACTUALLY NEED TO CONNECT TO ANY DB
+
 //process.env['xxxxx'] are environment variables set in Heroku, so its securely located
 //and dont need a config file anymore
-switch(process.env.NODE_ENV) {
-	case 'production':
-    	var connection = mysql.createConnection({
-		    host: process.env['PROD_HOSTNAME'],
-		    user: process.env['PROD_USERNAME'],
-		    password: process.env['PROD_PASSWORD']
-		});
-		connection.connect(function(e) {
+// switch(process.env.NODE_ENV) {
+// 	case 'production':
+//     	var connection = mysql.createConnection({
+// 		    host: process.env['PROD_HOSTNAME'],
+// 		    user: process.env['PROD_USERNAME'],
+// 		    password: process.env['PROD_PASSWORD']
+// 		});
+// 		connection.connect(function(e) {
 
-			if (e) {
-				console.error('Error connecting: \n' + e.stack);
-				return;
-			}  
-		    console.log("Connection to production database successful");
-		});
-		break;
+// 			if (e) {
+// 				console.error('Error connecting: \n' + e.stack);
+// 				return;
+// 			}  
+// 		    console.log("Connection to production database successful");
+// 		});
+// 		break;
 
-	default:
-		var connection = mysql.createConnection({
-	    	host: process.env['DEV_HOSTNAME'],
-		    user: process.env['DEV_USERNAME'],
-		    password: process.env['DEV_PASSWORD'],
-	    	database: process.env['DEV_DATABASE']
-	    });
-	    connection.connect(function(e) {
+// 	default:
+// 		var connection = mysql.createConnection({
+// 	    	host: process.env['DEV_HOSTNAME'],
+// 		    user: process.env['DEV_USERNAME'],
+// 		    password: process.env['DEV_PASSWORD'],
+// 	    	database: process.env['DEV_DATABASE']
+// 	    });
+// 	    connection.connect(function(e) {
 
-	    	if(e) {
-	    		console.error('Error connecting: \n' + e.stack);
-	    		return;
-	    	}
-		    console.log("Connection to development database successful")
-		});
-}
+// 	    	if(e) {
+// 	    		console.error('Error connecting: \n' + e.stack);
+// 	    		return;
+// 	    	}
+// 		    console.log("Connection to development database successful")
+// 		});
+// }
 
 /*
 This is used for production only. Server usage during development 
