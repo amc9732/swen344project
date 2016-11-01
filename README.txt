@@ -1,5 +1,5 @@
 ##Student Enrollment System##
-        
+
 DEVELOPMENT
 
 Install dependencies and get credentials:
@@ -9,7 +9,7 @@ Install dependencies and get credentials:
 3) Get the .env file that contains various private credentials for connecting to different parts of the app/db/etc.
 
 To run the app locally:
-    
+
     Dev environment(using dev DB):
         1) run `gulp`
     Prod environment: Uses optimized build, and prod DB which is on the VM. Not likely to need to do this much:
@@ -22,6 +22,7 @@ To run the app locally:
 
 TESTING
 
+Run "npm install -g karma-cli" so you can type "karma" without having to type "./node_modules/karma/bin/karma"
 From the projects root directory, run `karma start`.
 
 This will open a new browser window to run the tests, close it, then output detailed results to the terminal window.
