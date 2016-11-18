@@ -1,5 +1,3 @@
-const root = 'http://localhost:1337/vm344e.se.rit.edu/api/Book.php?';
-
 var app = angular.module('BookModule', [])
 
 	//Get All Books
@@ -7,7 +5,7 @@ var app = angular.module('BookModule', [])
 
 		var queryBooks = function() {
 
-			$http.get(root + 'action=get_all_books')
+			$http.get('http://localhost:1337/vm344e.se.rit.edu/api/Book.php?action=get_all_books')
 				.success(function(data) {
 					return data;
 
@@ -15,7 +13,7 @@ var app = angular.module('BookModule', [])
 				.error(function(data) {
 					console.log('Error pulling from Book endpoint, action = get_all_books');
 				});
-		}
+		};
 
 		$scope.data = queryBooks();	
 
