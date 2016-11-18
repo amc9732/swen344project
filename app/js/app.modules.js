@@ -1,5 +1,8 @@
 //Top level Angular module, which will depend on all other modules
-var myAppModule = angular.module('EnrollmentSystem', [
-	'RoutingModule',
-	'ExampleAPIModule'
-]);
+var myAppModule = angular.module('EnrollmentSystem', 
+	[
+		'LoginModule',
+		'RoutingModule',
+		'ExampleAPIModule'
+	]
+);

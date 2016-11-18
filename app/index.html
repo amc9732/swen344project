@@ -1,47 +1,46 @@
 <!DOCTYPE html>
-<html ng-app="EnrollmentSystem">
-  <head>
-    <meta charset="UTF-8">
-    <title>Enrollment System</title>
-    
-    <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
-    <base href="/"/>
-    <!-- inject:css -->
-  	<link rel="stylesheet" href="/css/styles.css">
-  	<!-- endinject -->
-    <!-- bower:css -->
-    <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
-    <!-- endbower -->
-  </head>
-  <body ng-controller="mainController">
+    <html ng-app="EnrollmentSystem">
+        <head>
+            <meta charset="UTF-8">
+            <title>Enrollment System</title>
+            <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
+            <base href="/"/>
+            <!-- inject:css -->
+            <link rel="stylesheet" href="/css/styles.css">
+            <!-- endinject -->
+            <!-- bower:css -->
+            <link rel="stylesheet" href="/bower_components/angular-material/angular-material.css" />
+            <!-- endbower -->
+        </head>
+        <body ng-controller="mainController">
 
-    <div ng-controller="ExampleAPIController">
-      <p>This is an example of how to consume an API using Angular.</p>
-      <p>{{contents}}</p>
-    </div></br></br></br>
+            <div ng-controller="LoginController">
+                <button ng-click="authenticate('google')">Sign in with Google</button>
+            </div>
 
-    <p>This shows how controllers work, see routes/routing.js</p>
-    <div ng-view>
-    
-    </div>
+            <div ng-controller="ExampleAPIController">
+            <p>This is an example of how to consume an API using Angular.</p>
+            <p>{{contents}}</p>
+            </div>
+           
+            <!-- bower:js -->
+            <script src="/bower_components/angular/angular.js"></script>
+            <script src="/bower_components/angular-animate/angular-animate.js"></script>
+            <script src="/bower_components/angular-aria/angular-aria.js"></script>
+            <script src="/bower_components/angular-messages/angular-messages.js"></script>
+            <script src="/bower_components/angular-material/angular-material.js"></script>
+            <script src="/bower_components/angular-route/angular-route.js"></script>
+            <script src="/bower_components/satellizer/dist/satellizer.js"></script>
+            <!-- endbower -->
 
-    <!-- bower:js -->
-    <script src="/bower_components/angular/angular.js"></script>
-    <script src="/bower_components/angular-animate/angular-animate.js"></script>
-    <script src="/bower_components/angular-aria/angular-aria.js"></script>
-    <script src="/bower_components/angular-messages/angular-messages.js"></script>
-    <script src="/bower_components/angular-material/angular-material.js"></script>
-    <script src="/bower_components/angular-route/angular-route.js"></script>
-    <!-- endbower -->
-  	
-    <!-- inject:js -->
-  	<script src="/js/api.js"></script>
-  	<script src="/js/app.modules.js"></script>
-  	<script src="/js/books.js"></script>
-  	<script src="/js/course.js"></script>
-  	<script src="/js/login.js"></script>
-  	<script src="/routes/routing.js"></script>
-  	<!-- endinject -->
-    
-  </body>
-</html>
+            <!-- inject:js -->
+            <script src="/js/api.js"></script>
+            <script src="/js/app.modules.js"></script>
+            <script src="/js/books.js"></script>
+            <script src="/js/course.js"></script>
+            <script src="/js/login.js"></script>
+            <script src="/routes/routing.js"></script>
+            <!-- endinject -->
+
+        </body>
+    </html>
