@@ -1,6 +1,6 @@
-angular.module('ExampleAPIModule', [])
+angular.module('APIModule', [])
 
-	.controller('ExampleAPIController', function($scope, $http) {
+	.controller('APIController', function($scope, $http) {
 		var api = 'http://localhost:1337/vm344e.se.rit.edu/api/Course.php?action=get_course_by_name&name=Web Engineering';
 		$http.get(api)
 			.success(function(data){

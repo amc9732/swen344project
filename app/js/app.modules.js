@@ -3,6 +3,6 @@ var myAppModule = angular.module('EnrollmentSystem',
 	[
 		'LoginModule',
 		'RoutingModule',
-		'ExampleAPIModule'
+		'APIModule'
 	]
 );
