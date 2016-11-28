@@ -3,49 +3,42 @@
         <head>
             <meta charset="UTF-8">
             <title>Enrollment System</title>
+            <base href="/"/>
             <link rel="icon" href="/images/favicon.ico" type="image/x-icon" />
             <script src="http://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
             <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
             <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
             <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-            <base href="/"/>
             <!-- inject:css -->
             <link rel="stylesheet" href="/fonts/font-awesome.css">
             <!-- endinject -->
             <!-- bower:css -->
             <!-- endbower -->
         </head>
-        <body ng-controller="mainController">
-
-            
-            <div class="container Absolute-Center is-Responsive">
-                <h3>Login</h3>
-                <div ng-controller="LoginController" class="">
-                    <a ng-click="authenticate('google')" href="">
-                        <i class="fa fa-google-plus fa-3x"></i>
-                    </a>
-                </div>     
+        <body>
+            <div ng-controller="LoginController">
+                <google-plus-signin ng-show="!loggedIn" clientid="535130472873-q5fs02pbv7v86fru7v320o9stc4f8ha3.apps.googleusercontent.com">
+                </google-plus-signin>
             </div>
 
-            <!-- <div ng-controller="APIController">
-            <p>This is an example of how to consume an API using Angular.</p>
-            <p>{{contents}}</p>
-            </div> -->
-           
+            <ng-view></ng-view>
+            
             <!-- bower:js -->
             <script src="/bower_components/angular/angular.js"></script>
             <script src="/bower_components/angular-route/angular-route.js"></script>
-            <script src="/bower_components/satellizer/dist/satellizer.js"></script>
+            <script src="/bower_components/angular-directive.g-signin/google-plus-signin.js"></script>
+            <script src="/bower_components/ngstorage/ngStorage.js"></script>
             <!-- endbower -->
 
             <!-- inject:js -->
+            <script src="/routes/routing.js"></script>
             <script src="/js/api.js"></script>
             <script src="/js/app.modules.js"></script>
             <script src="/js/books.js"></script>
             <script src="/js/course.js"></script>
             <script src="/js/login.js"></script>
-            <script src="/routes/routing.js"></script>
+            <script src="/js/main.js"></script>
+            <script src="/js/userprofile.js"></script>
             <!-- endinject -->
-
         </body>
     </html>

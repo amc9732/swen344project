@@ -33,7 +33,7 @@ gulp.task('injectfontawesome', function() {
 
 //Inject everything inside app/js into index.html
 gulp.task('injectjs', function() {
-    var source = gulp.src(['./app/js/**/*.js', 'app/routes/**/*.js']);
+    var source = gulp.src(['app/routes/**/*.js', './app/js/**/*.js']);
     var target = gulp.src('./app/index.html');
 
     return target

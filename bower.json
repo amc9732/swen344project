@@ -17,8 +17,9 @@
   "private": true,
   "dependencies": {
     "angular-route": "^1.5.8",
-    "satellizer": "^0.15.5",
-    "font-awesome": "^4.7.0"
+    "font-awesome": "^4.7.0",
+    "angular-directive.g-signin": "^0.1.2",
+    "ngstorage": "^0.3.11"
   },
   "overrides": {
     "font-awesome": {

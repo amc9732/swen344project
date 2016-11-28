@@ -1,8 +1,11 @@
 //Top level Angular module, which will depend on all other modules
 var myAppModule = angular.module('EnrollmentSystem', 
 	[
-		'LoginModule',
+		'APIModule',
 		'RoutingModule',
-		'APIModule'
+		'GoogleOAuthModule',
+		'directive.g+signin',
+		'HomePageModule',
+		'UserProfileModule'
 	]
 );

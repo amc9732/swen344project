@@ -8,7 +8,7 @@
     "344"
   ],
   "scripts": {
-    "start": "NODE_ENV=production node app/app.js",
+    "start": "NODE_ENV=production corsproxy & node app/app.js",
     "test": "karma start karma.conf.js"
   },
   "engines": {
@@ -19,6 +19,7 @@
   "private": true,
   "dependencies": {
     "angular": "^1.5.8",
+    "angular-ui-router": "^0.3.2",
     "asynckit": "^0.4.0",
     "body-parser": "~1.15.1",
     "cookie-parser": "~1.4.3",
