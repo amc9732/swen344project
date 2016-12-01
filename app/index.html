@@ -9,6 +9,7 @@
             <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
             <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
             <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+            <link rel="stylesheet" href="https://bootswatch.com/cerulean/bootstrap.min.css">
             <!-- inject:css -->
             <link rel="stylesheet" href="/fonts/font-awesome.css">
             <!-- endinject -->
@@ -16,13 +17,21 @@
             <!-- endbower -->
         </head>
         <body>
+
             <div ng-controller="LoginController">
-                <google-plus-signin ng-show="!loggedIn" clientid="535130472873-q5fs02pbv7v86fru7v320o9stc4f8ha3.apps.googleusercontent.com">
-                </google-plus-signin>
+                <div ng-hide="loggedIn">
+                    <div class="text-center pagination-centered">
+                        <div style="background:transparent !important" class="jumbotron">
+                        <h3> Welcome to Wave! </h3>
+                        <google-plus-signin clientid="535130472873-q5fs02pbv7v86fru7v320o9stc4f8ha3.apps.googleusercontent.com"></google-plus-signin>
+                        </div>
+                    </div>
+                </div>
+                <div ng-hide="!loggedIn">
+                    <ng-view></ng-view>
+                </div>
             </div>
 
-            <ng-view></ng-view>
-            
             <!-- bower:js -->
             <script src="/bower_components/angular/angular.js"></script>
             <script src="/bower_components/angular-route/angular-route.js"></script>
@@ -36,9 +45,9 @@
             <script src="/js/app.modules.js"></script>
             <script src="/js/books.js"></script>
             <script src="/js/course.js"></script>
+            <script src="/js/homepage.js"></script>
             <script src="/js/login.js"></script>
-            <script src="/js/main.js"></script>
             <script src="/js/userprofile.js"></script>
             <!-- endinject -->
         </body>
-    </html>
+    </html> </html>

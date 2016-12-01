@@ -1,6 +1,3 @@
-body {
+.jumbotron {
 	background-color: white;
-}
- html, body, .container-table {
-    height: 100%;
 }
