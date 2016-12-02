@@ -1,17 +1,23 @@
-<nav ng-controller="HomePageController" class="navbar navbar-default">
+<nav class="navbar navbar-default">
 	<div class="container-fluid">
     	<div class="navbar-header">
     		<button type="button" class="navbar-toggle collapsed">
 		        
 	      	</button>
-	      	<a class="navbar-brand" href="/home">Wave Course Enrollment System</a>
+	      	<a class="navbar-brand" href="" ng-click="reloadRoute()">Wave Course Enrollment System</a>
     	</div>
     	<ul class="nav navbar-nav navbar-right">
     		<li>
     			<button type="button" class="navbar-toggle collapsed">
 		      	</button>
-		      	<a href="#" onclick="logout()">Logout</a>
+		      	<a href="" ng-click="logout()">Logout</a>
     		</li>
       	</ul>
     </div>
 </nav>
+
+<p>{{message}}</p>
+
+<!-- Test code to help understand routing a bit -->
+<a href="" ng-click="reloadRoute()"> RELOAD</a>
+<p>Controller reloaded {{foo}} times</p>
