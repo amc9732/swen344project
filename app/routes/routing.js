@@ -2,7 +2,8 @@ var app = angular.module('RoutingModule', ['ngRoute']);
 
 // configure our routes
 app.config(function($routeProvider, $locationProvider) {
-    //$locationProvider.html5Mode(true);//remove the need for # in any URLs
+
+    $locationProvider.html5Mode(true);//remove the need for # in any URLs
     $routeProvider
 
         .when('/index', {

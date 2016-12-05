@@ -11,6 +11,10 @@ app.controller('HomePageController', function($window, $scope, $route, $rootScop
 		$rootScope.foo++;
 	}
 
+	$scope.goToProfile = function() {
+		$location.path('/profile');
+	};
+
 	$scope.reloadRoute = function() {
 		$route.reload();
 	};
