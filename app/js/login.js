@@ -1,11 +1,16 @@
 var oauthModule = angular.module('GoogleOAuthModule', ['ngRoute']);
 	
 oauthModule
+
+	.directive('loginDirective', function() {
+		return {
+			templateUrl : 'templates/login.html',
+		}
+	})
 	
 	.controller('LoginController', function ($window, $rootScope, $location, $scope, $timeout, $route, $http) {
 
 		$scope.loggedIn = null;
-		$rootScope.userEmail = null;
 
 		$scope.$on('event:google-plus-signin-success', function (event, authResult) {
 			// User successfully authorized the G+ App!
@@ -67,7 +72,6 @@ oauthModule
 			 //      $scope.navbarRoutes = $.unique($scope.navbarRoutes)
 			 //      console.log($scope.navbarRoutes);
 				
-
 				$location.path('/home');
 			}
 			else {

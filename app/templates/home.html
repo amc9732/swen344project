@@ -1,29 +1,33 @@
-<nav class="navbar navbar-default">
-	<div class="container-fluid">
-    	<div class="navbar-header">
-    		<button type="button" class="navbar-toggle collapsed">
-		        <!--just reload the page-->
-	      	</button>
-	      	<a class="navbar-brand" href="" ng-click="reloadRoute()">Enrollment System</a>
-    	</div>
-    	<ul class="nav navbar-nav navbar-right">
-            <li>
-                <button type="button" class="navbar-toggle collapsed">
-                    
-                </button>
-                <a href="" ng-click="goToProfile()">Profile</a>
-            </li>
-    		<li>
-    			<button type="button" class="navbar-toggle collapsed">
-		      	</button>
-		      	<a href="" ng-click="logout()">Logout</a>
-    		</li>
-      	</ul>
-    </div>
-</nav>
+<div class="text-center pagination-centered">
 
-<p>{{message}}</p>
+    <nav class="navbar navbar-default">
+    	<div class="container-fluid">
+        	<div class="navbar-header">
+        		<button type="button" class="navbar-toggle collapsed">
+    	      	</button>
+                <!--just reload the page-->
+    	      	<a class="navbar-brand" href="" ng-click="reloadRoute()">Enrollment System</a>
+        	</div>
+        	<ul class="nav navbar-nav navbar-right">
+                <li>
+                    <button type="button" class="navbar-toggle collapsed">
+                        
+                    </button>
+                    <a href="" ng-click="goToProfile()">Profile</a>
+                </li>
+        		<li>
+        			<button type="button" class="navbar-toggle collapsed">
+    		      	</button>
+    		      	<a href="" ng-click="logout()">Logout</a>
+        		</li>
+          	</ul>
+        </div>
+    </nav>
 
-<!-- Test code to help understand routing a bit -->
-<a href="" ng-click="reloadRoute()"> RELOAD</a>
-<p>Controller reloaded {{foo}} times</p>
+    <p>{{message}}</p>
+
+    <!-- Test code to help understand routing a bit -->
+    <a href="" ng-click="reloadRoute()">RELOAD</a>
+    <p>Controller reloaded {{foo}} times</p>
+
+</div>

@@ -20,12 +20,7 @@
 
             <div ng-controller="LoginController">
                 <div ng-hide="loggedIn">
-                    <div class="text-center pagination-centered">
-                        <div style="background:transparent !important" class="jumbotron">
-                            <h3> Welcome to Wave! </h3>
-                            <google-plus-signin clientid="535130472873-q5fs02pbv7v86fru7v320o9stc4f8ha3.apps.googleusercontent.com"></google-plus-signin>
-                        </div>
-                    </div>
+                    <login-directive></login-directive>
                 </div>
             </div>
 
@@ -36,6 +31,7 @@
             <script src="/bower_components/angular-route/angular-route.js"></script>
             <script src="/bower_components/angular-directive.g-signin/google-plus-signin.js"></script>
             <script src="/bower_components/ngstorage/ngStorage.js"></script>
+            <script src="/bower_components/angularjs-social-login/angularjs-social-login.js"></script>
             <!-- endbower -->
 
             <!-- inject:js -->
@@ -45,6 +41,7 @@
             <script src="/js/books.js"></script>
             <script src="/js/course.js"></script>
             <script src="/js/homepage.js"></script>
+            <script src="/js/linkedin.js"></script>
             <script src="/js/login.js"></script>
             <script src="/js/userprofile.js"></script>
             <!-- endinject -->

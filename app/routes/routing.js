@@ -2,8 +2,7 @@ var app = angular.module('RoutingModule', ['ngRoute']);
 
 // configure our routes
 app.config(function($routeProvider, $locationProvider) {
-
-    $locationProvider.html5Mode(true);//remove the need for # in any URLs
+    
     $routeProvider
 
         .when('/index', {
@@ -12,7 +11,8 @@ app.config(function($routeProvider, $locationProvider) {
         // route for the home page
         .when('/home', {
             templateUrl : '/templates/home.html',
-            controller  : 'HomePageController'
+            controller  : 'HomePageController',
+            reloadOnSearch: false
         })
         // route for the profile page
         .when('/profile', {
@@ -23,5 +23,7 @@ app.config(function($routeProvider, $locationProvider) {
             templateUrl : '/templates/404.html'
         })
 
-        //.otherwise({ redirectTo: '/404' });//for all unknown routes, go to 404
+        .otherwise({ redirectTo: '/' });//for all unknown routes
+
+        $locationProvider.html5Mode(true);//remove the need for # in any URLs
 });

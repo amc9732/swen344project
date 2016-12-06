@@ -19,7 +19,8 @@
     "angular-route": "^1.5.8",
     "font-awesome": "^4.7.0",
     "angular-directive.g-signin": "^0.1.2",
-    "ngstorage": "^0.3.11"
+    "ngstorage": "^0.3.11",
+    "angularjs-social-login": "^2.4.5"
   },
   "overrides": {
     "font-awesome": {

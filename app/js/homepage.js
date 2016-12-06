@@ -16,7 +16,7 @@ app.controller('HomePageController', function($window, $scope, $route, $rootScop
 	};
 
 	$scope.reloadRoute = function() {
-		$route.reload();
+		$route.reload();//this will reinstantiate this controller, so anything in $scope will be lost!
 	};
 
 	$scope.logout = function() {

@@ -8,5 +8,10 @@ app.get('/', function(req, res) {
     res.sendFile(path.join(__dirname + '/index.html'));
 });
 
+// app.get('/home', function(req, res) {
+// 	app.use(express.static(__dirname + '/'));
+// 	res.sendFile(path.join(__dirname + '/templates/home.html'));
+// });
+
 app.listen(process.env.PORT || 5000);
 
