@@ -46,5 +46,20 @@ app
     		$route.reload();
 
     	}
+
+
+    	//needs to be wrapped in a function
+		$scope.courses = [];
+
+		$http.get("http://localhost:1337/vm344e.se.rit.edu/api/Course.php?action=get_all_courses")
+			.success(function(data) {
+				$scope.courses = data;
+			})
+
+			.error(function(data) {
+				console.log ("Error pulling all courses: " + data);
+			})
+
+
         
     });
