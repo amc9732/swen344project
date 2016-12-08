@@ -30,8 +30,21 @@ app.controller('HomePageController', function($http, $window, $scope, $route, $r
 				$scope.searchSubmitted = true;
 			})
 			.error(function (data) {
-				console.log('error pulling data from ' + api);
+				console.log('error pulling data from endpoint ' + api);
 			});
     };
+
+    $scope.isAdmin = function() {
+    	$scope.fullName = $rootScope.fullName;
+    	if($scope.fullName === 'Tyler Russell');
+    		return true;
+    	return false;
+    };
+
+    $scope.admin = $scope.isAdmin();
+
+    $scope.goToCreateCoursePage = function() {
+    	$location.path('/create_course');
+    }
 
 });

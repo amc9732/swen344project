@@ -1,0 +1,31 @@
+<!-- name, description, credits, gpa_req -->
+
+<form name="createCourseForm">
+    <table border="1">
+        <tr>
+            <td>Course Name</td>
+            <td>
+                <input ng-model="courseName" type="text" required>
+            </td>
+        </tr>
+        <tr>
+            <td>Course Description</td>
+            <td>
+                <input ng-model="courseDescription" type="text" required>
+            </td>
+        </tr>
+         <tr>
+            <td>Credit Value</td>
+            <td>
+                <input ng-model="numCredits" type="number" required>
+            </td>
+        </tr>
+         <tr>
+            <td>Required GPA</td>
+            <td>
+                <input ng-model="requiredGPA" type="number" required>
+            </td>
+        </tr>
+    </table>
+    <button ng-click="createCourseForm.$valid && createCourse()" class="btn btn-primary">Submit</button>
+</form>

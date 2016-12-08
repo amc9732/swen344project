@@ -9,9 +9,13 @@
     	      	<a class="navbar-brand" href="" ng-click="reloadRoute()">Course Enrollment System</a>
         	</div>
         	<ul class="nav navbar-nav navbar-right">
+                <li ng-show="{{admin}}">
+                    <button type="button" class="navbar-toggle collapsed">
+                    </button>
+                    <a href="" ng-click="goToCreateCoursePage()">Create Course</a>
+                </li>
                 <li>
                     <button type="button" class="navbar-toggle collapsed">
-                        
                     </button>
                     <a href="" ng-click="goToProfile()">Profile</a>
                 </li>
