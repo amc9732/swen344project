@@ -6,7 +6,7 @@
         		<button type="button" class="navbar-toggle collapsed">
     	      	</button>
                 <!--just reload the page-->
-    	      	<a class="navbar-brand" href="" ng-click="reloadRoute()">Enrollment System</a>
+    	      	<a class="navbar-brand" href="" ng-click="reloadRoute()">Course Enrollment System</a>
         	</div>
         	<ul class="nav navbar-nav navbar-right">
                 <li>
@@ -23,11 +23,37 @@
           	</ul>
         </div>
     </nav>
-
-    <p>{{message}}</p>
-
-    <!-- Test code to help understand routing a bit -->
-    <a href="" ng-click="reloadRoute()">RELOAD</a>
-    <p>Controller reloaded {{foo}} times</p>
-
 </div>
+
+<div class="text-center pagination-centered">
+    <form name="searchForm">
+        <p>Search By Course Name:</p>
+        <input ng-model="queryTerm" required/>
+        <!-- <p>Filter By:</p> 
+        <select ng-model="queryBy" required>
+            <option value="">None</option>
+            <option value="courseNumber">Course Number (eg: 101 or 344)</option>
+            <option value="courseName">Course Name (eg: Web Engineering or Calculus)</option>
+        </select> -->
+        <button ng-click="searchForm.$valid && submitSearch()" class="btn btn-primary">Submit</button>
+    </form>
+</div>
+
+<table>
+    <tr>
+        <th>Course ID</th>
+        <th>Course Name</th>
+        <th>Description</th>
+        <th>Credits</th>
+        <th>Required GPA</th>
+    </tr>
+    <div ng-show="searchSubmitted">
+        <tr ng-repeat="result in searchResults">
+            <td>{{result.Name}}</td>
+            <td>{{result.CourseID}}</td>
+            <td>{{result.Credits}}</td>
+            <td>{{result.Description}}</td>
+            <td>{{result.GPAReq}}</td>
+        </tr>
+    </div>
+</table>

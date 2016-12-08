@@ -25,5 +25,8 @@ app.config(function($routeProvider, $locationProvider) {
 
         .otherwise({ redirectTo: '/' });//for all unknown routes
 
-        $locationProvider.html5Mode(true);//remove the need for # in any URLs
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: true
+        });//remove the need for # in any URLs
 });

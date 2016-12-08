@@ -12,6 +12,8 @@ app
 
     	//This event is called by the angular-social-login bower package
     	$rootScope.$on('event:social-sign-in-success', function(event, userDetails) {
+            console.log(event);
+            console.log(userDetails);
     		localStorage.setItem("linkedInImageUrl", userDetails.imageUrl);
     		$scope.linkedInAuthorized = true;
     		$location.path('/profile');
