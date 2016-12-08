@@ -28,7 +28,7 @@
 
                 <!-- SIDEBAR USERPIC -->
                 <div class="profile-userpic col-md-12 text-center">
-                    <img class="pro-pic" height="50%" width="50%" ng-src="{{imageUrl}}" alt="&lt;your image here&gt;">
+                    <img class="pro-pic" ng-src="{{imageUrl}}" alt="&lt;your image here&gt;">
                 </div>
                 <!---->
 
@@ -36,8 +36,8 @@
                 <div class="profile-usertitle vertical-center col-md-12">
                     <div class="profile-usertitle-name col-md-12">
                         <div class="col-md-12 text-center full-name"> {{fullName}} </div>
-                        <button class="col-md-6 col-md-offset-3" linked-in type="button">Import LinkedIn Info</button>
-                        <button class="col-md-6 col-md-offset-3" ng-click="removeLinkedIn()" ng-hide="linkedInAuthorized" type="button">Disconnect from LinkedIn</button>
+                        <button class="col-md-6 col-md-offset-3 btn-success" linked-in type="button">Import LinkedIn Info</button>
+                        <button class="col-md-6 col-md-offset-3 btn-danger" ng-click="removeLinkedIn()" ng-hide="linkedInAuthorized" type="button">Disconnect from LinkedIn</button>
                     </div>
                 </div>
                 <!---->
@@ -58,11 +58,6 @@
                     </ul>
                 </div>
                 <!---->
-            </div>
-        </div>
-        <div class="col-md-12">
-            <div class="profile-content text-center">
-                Something goes here....?
             </div>
         </div>
     </div>
