@@ -1,7 +1,7 @@
 var app = angular.module('HomePageModule', ['ngRoute']);
 
 // create the controller and inject Angular's $scope
-app.controller('HomePageController', function($window, $scope, $route, $rootScope, $location) {
+app.controller('HomePageController', function($window, $scope, $route, $rootScope, $location, $http) {
 
 	//This if/else is just to help understand route loading... has no other purpose
 	if(!angular.isDefined($rootScope.foo)){
@@ -25,4 +25,20 @@ app.controller('HomePageController', function($window, $scope, $route, $rootScop
 
 	$scope.message = "THIS IS THE HOMEPAGE!";
 
+	$scope.searchClass = function() {
+        var queryVal = $('#searchBox').val();
+		$http.get("http://vm344e.se.rit.edu/api/Course.php?action=get_course_by_name&name=" + queryVal)
+			.success(function(data) {
+				debugger;
+				return data;
+			})
+
+			.error(function(data) {
+                debugger;
+				console.log('Error pulling from Course endpoint, action = get_course_by_name with parameter name being ' + name);
+			});
+        };
+
 });
+
+

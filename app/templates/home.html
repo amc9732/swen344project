@@ -30,4 +30,131 @@
     <a href="" ng-click="reloadRoute()">RELOAD</a>
     <p>Controller reloaded {{foo}} times</p>
 
+
+	<div id="searchHead" class="form-inline">
+		<h1>Class Search<br></h1>
+	</div>
+
+	<div id="searchForm" class="form-inline">
+		<div class="col-md-8 col-lg-8 col-sm-8 col-xs-8">
+			<input id="searchBox" class="searchForm" style="
+				width: 100%;
+				height: 30px;
+				padding: 5px 10px;
+				display: inline-block;"
+				   placeholder="Enter course name, course number, or course code">
+		</div>
+		<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+			<select id="term" style="width: 100%; height: 30px;
+    padding: 0px;
+    min-width: 200px;">
+				<option value="0">Fall 2016</option>
+				<option value="1">Spring 2017</option>
+				<option value="2">Summer 2017</option>
+				<option value="3">Fall 2017</option>
+			</select>
+		</div>
+
+		<br /><br />
+
+		<div>
+			<button id="btnSearch" class="searchBtn" type="submit" ng-click="searchClass()" value="Search" style="height: 30px;
+    width: 100px;">Search</button>
+		</div>
+		<br>
+	</div>
+
+	<div id="advancedBtn">
+		<div class="row">
+			<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+				<label class="advancedLabel" style="
+					width: 100%;
+					height: 30px;
+					padding: 5px 10px;
+					display: inline-block;"
+					   >
+					   College:
+			   </label>
+			</div>
+			<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+				<select class="advancedDropdown" style="width: 100%; height: 30px;
+		padding: 0px;
+		min-width: 200px;">
+					<option value="0">Fall 2016</option>
+					<option value="1">Spring 2017</option>
+					<option value="2">Summer 2017</option>
+					<option value="3">Fall 2017</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+				<label class="advancedLabel" style="
+					width: 100%;
+					height: 30px;
+					padding: 5px 10px;
+					display: inline-block;"
+				>
+					Course Subject:
+				</label>
+			</div>
+			<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+				<select class="advancedDropdown" style="width: 100%; height: 30px;
+		padding: 0px;
+		min-width: 200px;">
+					<option value="0">Fall 2016</option>
+					<option value="1">Spring 2017</option>
+					<option value="2">Summer 2017</option>
+					<option value="3">Fall 2017</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+				<label class="advancedLabel" style="
+					width: 100%;
+					height: 30px;
+					padding: 5px 10px;
+					display: inline-block;"
+				>
+					Instructor:
+				</label>
+			</div>
+			<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+				<select class="advancedDropdown" style="width: 100%; height: 30px;
+		padding: 0px;
+		min-width: 200px;">
+					<option value="0">Fall 2016</option>
+					<option value="1">Spring 2017</option>
+					<option value="2">Summer 2017</option>
+					<option value="3">Fall 2017</option>
+				</select>
+			</div>
+		</div>
+		<div class="row">
+			<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+				<label class="advancedLabel" style="
+					width: 100%;
+					height: 30px;
+					padding: 5px 10px;
+					display: inline-block;"
+				>
+					Credits:
+				</label>
+			</div>
+			<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+				<select class="advancedDropdown" style="width: 100%; height: 30px;
+		padding: 0px;
+		min-width: 200px;">
+					<option value="0">Fall 2016</option>
+					<option value="1">Spring 2017</option>
+					<option value="2">Summer 2017</option>
+					<option value="3">Fall 2017</option>
+				</select>
+			</div>
+		</div>
+	</div>
+
+
+
 </div>

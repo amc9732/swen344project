@@ -45,7 +45,7 @@ app
     		localStorage.removeItem('linkedInImageUrl');
     		$route.reload();
 
-    	}
+    	};
 
 
     	//needs to be wrapped in a function
@@ -58,7 +58,7 @@ app
 
 			.error(function(data) {
 				console.log ("Error pulling all courses: " + data);
-			})
+			});
 
 
         

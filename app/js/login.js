@@ -4,8 +4,8 @@ oauthModule
 
 	.directive('loginDirective', function() {
 		return {
-			templateUrl : 'templates/login.html',
-		}
+			templateUrl : 'templates/login.html'
+		};
 	})
 	
 	.controller('LoginController', function ($window, $rootScope, $location, $scope, $timeout, $route, $http) {
@@ -50,7 +50,7 @@ oauthModule
 				})
 				.error(function(error) {
 					console.log('there was error');
-				})
+				});
 
 			$scope.loggedIn = true;
 			$timeout(callAtTimeout, 1000);

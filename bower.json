@@ -26,5 +26,8 @@
     "font-awesome": {
       "ignore": true
     }
+  },
+  "resolutions": {
+    "angular": "1.5.9"
   }
 }
