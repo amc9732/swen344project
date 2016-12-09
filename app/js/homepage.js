@@ -46,8 +46,6 @@ app.controller('HomePageController', function($http, $window, $scope, $route, $r
 			.error(function (error) {
 				console.log(error);
 			});
-			console.log($scope.classResults);
-			console.log($scope.courseResults);
     };
     $scope.isAdmin = function() {
     	$scope.fullName = $rootScope.fullName;
