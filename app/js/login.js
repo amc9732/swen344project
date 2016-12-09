@@ -50,11 +50,6 @@ oauthModule
 				.error(function (error) {
 					console.log('could not get data from Google+ API endpoint plus/v1/people/me');
 				});
-
-<<<<<<< Updated upstream
-			//Get whether or not the user is in the DB
-			//Currently sending a sample email already in the DB
-			//    so we can test rest of app, should just append $rootScope.userEmail instead once we are done
 			$http.get('http://localhost:1337/vm344e.se.rit.edu/api/User.php?action=get_user_by_email&email=dd@d.d')
 				.success(function(data) {
 					if(data.length === 0) {
@@ -66,8 +61,6 @@ oauthModule
 					console.log('there was an error redirecting to the HR page');
 				});
 
-=======
->>>>>>> Stashed changes
 			$scope.loggedIn = true;
 			$timeout(callAtTimeout, 1000);
 		});
