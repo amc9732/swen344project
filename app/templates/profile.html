@@ -54,9 +54,28 @@
                             <i class="glyphicon glyphicon-home"></i>
                             Current Courses </a>
                         </li>
-
-                        <li class="col-md-12 col-sm-12 col-lg-12" ng-repeat="course in currCourses">
-                            Class ID: {{course.ClassID}}
+                        <li class="col-md-12 col-sm-12 col-lg-12" ng-repeat="course in courseInfo">
+                            <div class="col-sm-12">
+                                Name: {{course.Name}}
+                            </div>
+                            <div class="col-sm-11 col-sm-offset-1 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2">
+                                Credits: {{classInfo[$index].SectionNumber}}
+                            </div>
+                            <div class="col-sm-11 col-sm-offset-1 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2">
+                                Start: {{classInfo[$index].StartTime}}
+                            </div>
+                            <div class="col-sm-11 col-sm-offset-1 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2">
+                                End: {{classInfo[$index].EndTime}}
+                            </div>
+                            <div class="col-sm-11 col-sm-offset-1 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2">
+                                Days: {{course.Days}}
+                            </div>
+                            <div class="col-sm-11 col-sm-offset-1 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2">
+                                Desc: {{course.Description}}
+                            </div>
+                            <div class="col-sm-11 col-sm-offset-1 col-md-10 col-md-offset-2 col-lg-10 col-lg-offset-2">
+                                Credits: {{course.Credits}}
+                            </div>
                         </li>
 
                         <li class="col-md-12 col-sm-12 col-lg-12">
