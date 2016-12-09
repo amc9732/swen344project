@@ -8,12 +8,15 @@ app
 
     .controller("UserProfileController", function($scope, $rootScope, $http, $route, $location){
 
-    	$scope.linkedInAuthorized = false;
+    	$scope.isConnected = function() {
+    		if(localStorage.getItem('linkedInImageUrl'))
+    			return true;
+    		return false;
+    	};
 
     	//This event is called by the angular-social-login bower package
     	$rootScope.$on('event:social-sign-in-success', function(event, userDetails) {
     		localStorage.setItem("linkedInImageUrl", userDetails.imageUrl);
-    		$scope.linkedInAuthorized = true;
     		$location.path('/profile');
     	});
 
@@ -21,45 +24,28 @@ app
 
     	$scope.imageUrl = localStorage.getItem('linkedInImageUrl');
 
-    	//not working... this is supposed to get some more data from LinkedIn, getting CORS issue again instead, even with proxy.
-   //  	var getProfileInfo = function() {
-   //  		$http(
-			// 	{
-			// 		method: 'GET', 
-			// 		url: 'http://localhost:1337/https://api.linkedin.com/v1/people/~', 
-			// 		headers: {
-			//     		'x-li-format': 'json'
-			//     	}
-			// 	}
-			// )
-			// 	.success(function(data){
-			// 		console.log(data);
-			// 	})
-			// 	.error(function (error) {
-			// 		console.log('there was error...');
-			// 	});
-   //  	}
-
    		//Just remove the localstorage item then reload the route (which reinstantiates this controller)
     	$scope.removeLinkedIn = function() {
     		localStorage.removeItem('linkedInImageUrl');
     		$route.reload();
-
     	};
 
+    	$scope.selectedRow = null;
 
-    	//needs to be wrapped in a function
-		$scope.courses = [];
+		$scope.setClickedRow = function(index) {
+			$scope.selectedRow = index;
+		};
 
-		$http.get("http://localhost:1337/vm344e.se.rit.edu/api/Course.php?action=get_all_courses")
-			.success(function(data) {
-				$scope.courses = data;
-			})
+        $scope.getCurrentCourse = function() {
+            $http.get("http://localhost:1337/vm344e.se.rit.edu/api/StudentClass.php?action=get_classIds_by_student_id&studentid=3")
+                .success(function(data) {
+                    console.log(data);
+                })
+                .error(function(data){
+                    console.log("Error pulling data from student");
+                });
+    	}
 
-			.error(function(data) {
-				console.log ("Error pulling all courses: " + data);
-			});
+    	$scope.getCurrentCourse();
 
-
-        
     });

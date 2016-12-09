@@ -49,7 +49,7 @@ oauthModule
 					}
 				})
 				.error(function(error) {
-					console.log('there was error');
+					console.log('there was an error redirecting to the HR page');
 				});
 
 			$scope.loggedIn = true;

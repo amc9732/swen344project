@@ -22,8 +22,15 @@ app.config(function($routeProvider, $locationProvider) {
         .when('/404', {
             templateUrl : '/templates/404.html'
         })
+        .when('/create_course', {
+            templateUrl : '/templates/create_course.html',
+            controller  : 'CreateCourseController'
+        })
 
         .otherwise({ redirectTo: '/' });//for all unknown routes
 
-        $locationProvider.html5Mode(true);//remove the need for # in any URLs
+        $locationProvider.html5Mode({
+            enabled: true,
+            requireBase: true
+        });//remove the need for # in any URLs
 });

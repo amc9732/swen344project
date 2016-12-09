@@ -22,14 +22,14 @@ var gulp = require('gulp'),
     notify = require('gulp-notify'),
     htmlmin = require('gulp-htmlmin');
 
-gulp.task('injectfontawesome', function() {
-    var source = gulp.src('app/fonts/font-awesome.css');
-    var target = gulp.src('app/index.html');
+// gulp.task('injectfontawesome', function() {
+//     var source = gulp.src('app/fonts/font-awesome.css');
+//     var target = gulp.src('app/index.html');
 
-    return target
-        .pipe(inject(source, {ignorePath: 'app'}))
-        .pipe(gulp.dest('app'));
-});
+//     return target
+//         .pipe(inject(source, {ignorePath: 'app'}))
+//         .pipe(gulp.dest('app'));
+// });
 
 //Inject everything inside app/js into index.html
 gulp.task('injectjs', function() {
@@ -42,7 +42,7 @@ gulp.task('injectjs', function() {
 });
 //Inject everything inside app/css into index.html
 gulp.task('injectcss', function() {
-    var source = gulp.src('app/css/**/*.css');
+    var source = gulp.src(['app/css/**/*.css', 'app/fonts/font-awesome.css']);
     var target = gulp.src('app/index.html');
 
     return target
@@ -148,7 +148,7 @@ gulp.task('default', function() {
         'injectcss',
         'addbower',
         'wiredep',
-        'injectfontawesome',
+        // 'injectfontawesome',
         'server'
     );
 });

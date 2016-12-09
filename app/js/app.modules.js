@@ -6,6 +6,7 @@ var myAppModule = angular.module('EnrollmentSystem',
 		'GoogleOAuthModule',
 		'directive.g+signin',
 		'HomePageModule',
-		'UserProfileModule'
+		'UserProfileModule',
+		'CreateCourseModule'
 	]
 );
