@@ -49,4 +49,7 @@ app
 
     	$scope.getCurrentCourse();
 
+        $scope.reloadRoute = function() {
+            $location.path('/home');
+        };
     });
