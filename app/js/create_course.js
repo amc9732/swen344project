@@ -18,7 +18,7 @@ app.controller('CreateCourseController', function($http, $scope) {
 		call += '&name=' + $scope.courseName;
 		call += '&description=' + $scope.courseDescription;
 		call += '&credits=' + $scope.creditValue;
-		call += '&req_gpa=' + $scope.requiredGPA;
+		call += '&gpa_req=' + $scope.requiredGPA;
 		console.log(call);
 		$http.post(call)
 			.success(function(data) {
