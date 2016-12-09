@@ -59,20 +59,20 @@ app.controller('HomePageController', function($http, $window, $scope, $route, $r
     $scope.admin = $scope.isAdmin();
     $scope.goToCreateCoursePage = function() {
     	$location.path('/create_course');
-    }
+    };
     
-    // $scope.enrollCourse = function() {
-    // 	//Should instead disable the Enroll button until a course is selected, cant figure it out yet
-    // 	if($scope.searchResults.length !== 0) {
+    $scope.enrollCourse = function() {
+     	//Should instead disable the Enroll button until a course is selected, cant figure it out yet
+     	if($scope.searchResults.length !== 0) {
     		
-    // 		//use the UserID to get the Student ID
-    // 		var userID = localStorage.getItem('userID');
+     		//use the UserID to get the Student ID
+     		var userID = localStorage.getItem('userID');
 
-    // 		//Get Student
-    // 		//var endpoint1 = 'http://localhost:1337/vm344e.se.rit.edu/api/Student.php?action=get_student_by_user_id&id=' + userID;
+     		//Get Student
+     		var endpoint1 = 'http://localhost:1337/vm344e.se.rit.edu/api/Student.php?action=get_student_by_user_id&id=' + userID;
     		
-    // 	}
-    // };
+     	}
+    };
 
 });
 
