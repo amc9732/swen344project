@@ -39,12 +39,13 @@ app
         $scope.getCurrentCourse = function() {
             $http.get("http://localhost:1337/vm344e.se.rit.edu/api/StudentClass.php?action=get_classIds_by_student_id&studentid=3")
                 .success(function(data) {
+                	$scope.currCourses = data;
                     console.log(data);
                 })
                 .error(function(data){
                     console.log("Error pulling data from student");
                 });
-    	}
+    	};
 
     	$scope.getCurrentCourse();
 
