@@ -29,4 +29,8 @@ app.controller('CreateCourseController', function($http, $scope) {
 			});
 	}
 
+    $scope.reloadRoute = function() {
+        $location.path('/home');
+    };
+
 });
