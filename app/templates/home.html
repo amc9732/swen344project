@@ -68,7 +68,8 @@
 		<br>
 	</form>
 
-	<div id="advancedBtn"><span id="advSearch" class="glyphicon glyphicon-chevron-right"><strong>Advanced Search</strong></span>
+	<div id="advancedBtn">
+		<span id="advSearch" class="glyphicon glyphicon-chevron-right"><strong>Advanced Search</strong></span>
 		<div id="advancedFields">
 			<div class="row">
 				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
@@ -182,7 +183,7 @@
     $(document).ready(function(){
         var advancedHidden = true;
         $("#advancedFields").slideUp();
-        $("#advancedBtn").click(function(){
+        $("#advSearch").click(function(){
             if (!advancedHidden) {
                 $("#advancedFields").slideUp();
                 advancedHidden = true;
