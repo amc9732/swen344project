@@ -1,7 +1,7 @@
 var app = angular.module('CreateCourseModule', []);
 
 // create the controller and inject Angular's $scope
-app.controller('CreateCourseController', function($http, $scope) {
+app.controller('CreateCourseController', function($http, $scope, $location) {
 
 	$scope.courseName = "";
 	$scope.courseDescription = "";
@@ -29,7 +29,7 @@ app.controller('CreateCourseController', function($http, $scope) {
 			});
 	}
 
-    $scope.reloadRoute = function() {
+    $scope.routeHome = function() {
         $location.path('/home');
     };
 
