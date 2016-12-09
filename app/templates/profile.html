@@ -36,8 +36,12 @@
                 <div class="profile-usertitle vertical-center col-md-12">
                     <div class="profile-usertitle-name col-md-12">
                         <div class="col-md-12 text-center full-name"> {{fullName}} </div>
-                        <button class="col-md-6 col-md-offset-3 btn-success" linked-in type="button">Import LinkedIn Info</button>
-                        <button class="col-md-6 col-md-offset-3 btn-danger" ng-click="removeLinkedIn()" ng-hide="linkedInAuthorized" type="button">Disconnect from LinkedIn</button>
+                        <div ng-show="!isConnected()">
+                            <button class="col-md-6 col-md-offset-3 btn-success" linked-in type="button">Import LinkedIn Info</button>
+                        </div>
+                        <div ng-show="isConnected()">
+                            <button class="col-md-6 col-md-offset-3 btn-danger" ng-click="removeLinkedIn()" type="button">Disconnect from LinkedIn</button>
+                        </div>
                     </div>
                 </div>
                 <!---->

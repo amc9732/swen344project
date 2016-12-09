@@ -2,6 +2,10 @@
 	background-color: white;
 }
 
+#enrollmentCheckbox {
+  float: right;
+}
+
 /* Profile container */
 .profile {
   margin: 10px 0;

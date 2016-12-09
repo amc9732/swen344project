@@ -22,10 +22,10 @@ app.controller('CreateCourseController', function($http, $scope, $location) {
 		console.log(call);
 		$http.post(call)
 			.success(function(data) {
-				console.log('success!');
+				
 			})
 			.error(function(error) {
-				console.log('there was error');
+				console.log('error occurred when creating the course');
 			});
 	}
 
