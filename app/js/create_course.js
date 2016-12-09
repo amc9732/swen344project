@@ -1,7 +1,7 @@
 var app = angular.module('CreateCourseModule', []);
 
 // create the controller and inject Angular's $scope
-app.controller('CreateCourseController', function($http, $scope) {
+app.controller('CreateCourseController', function($http, $scope, $location) {
 
 	$scope.courseName = "";
 	$scope.courseDescription = "";
@@ -18,7 +18,7 @@ app.controller('CreateCourseController', function($http, $scope) {
 		call += '&name=' + $scope.courseName;
 		call += '&description=' + $scope.courseDescription;
 		call += '&credits=' + $scope.creditValue;
-		call += '&req_gpa=' + $scope.requiredGPA;
+		call += '&gpa_req=' + $scope.requiredGPA;
 		console.log(call);
 		$http.post(call)
 			.success(function(data) {
@@ -28,5 +28,9 @@ app.controller('CreateCourseController', function($http, $scope) {
 				console.log('there was error');
 			});
 	}
+
+    $scope.routeHome = function() {
+        $location.path('/home');
+    };
 
 });
