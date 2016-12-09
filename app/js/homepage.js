@@ -21,7 +21,8 @@ app.controller('HomePageController', function($http, $window, $scope, $route, $r
     $scope.courseResults = [];
 
     $scope.submitSearch = function() {
-    	$scope.searchResults = [];//reset results list
+    	$scope.classResults = [];
+    	$scope.courseResults = [];
     	var call1 = 'http://localhost:1337/vm344e.se.rit.edu/api/Course.php?action=get_course_by_partial_name&name=' + $scope.queryTerm;
 		var call2 = 'http://localhost:1337/vm344e.se.rit.edu/api/Class.php?action=get_class_by_courseid&course_id=';
 
@@ -41,6 +42,8 @@ app.controller('HomePageController', function($http, $window, $scope, $route, $r
 							console.log(error);
 						});
 				}
+				console.log($scope.classResults);
+				console.log($scope.courseResults);
 				$scope.searchSubmitted = true;
 			})
 			.error(function (error) {
@@ -57,18 +60,19 @@ app.controller('HomePageController', function($http, $window, $scope, $route, $r
     $scope.goToCreateCoursePage = function() {
     	$location.path('/create_course');
     }
-    $scope.enrollCourse = function() {
-    	//Should instead disable the Enroll button until a course is selected, cant figure it out yet
-    	if($scope.searchResults.length !== 0) {
+    
+    // $scope.enrollCourse = function() {
+    // 	//Should instead disable the Enroll button until a course is selected, cant figure it out yet
+    // 	if($scope.searchResults.length !== 0) {
     		
-    		//use the UserID to get the Student ID
-    		var userID = localStorage.getItem('userID');
+    // 		//use the UserID to get the Student ID
+    // 		var userID = localStorage.getItem('userID');
 
-    		//Get Student
-    		//var endpoint1 = 'http://localhost:1337/vm344e.se.rit.edu/api/Student.php?action=get_student_by_user_id&id=' + userID;
+    // 		//Get Student
+    // 		//var endpoint1 = 'http://localhost:1337/vm344e.se.rit.edu/api/Student.php?action=get_student_by_user_id&id=' + userID;
     		
-    	}
-    };
+    // 	}
+    // };
 
 });
 

@@ -181,18 +181,26 @@
         <th>End Time</th>
     </tr>
     <div ng-show="searchSubmitted">
-        <tr ng-repeat="class_result in classResults">
-            <div ng-repeat="c_result in courseResults">
-                <td>{{c_result.Name}}<input id="enrollmentCheckbox" type="checkbox"/></td>
-                <td>{{c_result.Description}}</td>
-                <td>{{c_result.Credits}}</td>
-                <td>{{c_result.GPAReq}}</td>
-                <td>{{class_result.StartTime}}</td>
-                <td>{{class_result.EndTime}}</td>
-            </div>
+        <tr ng-repeat="c in courseResults">
+            <td>{{c.Name}}<input id="enrollmentCheckbox" type="checkbox"/></td>
+            <td>{{c.Description}}</td>
+            <td>{{c.Credits}}</td>
+            <td>{{c.GPAReq}}</td>
+        </tr>
+        <tr ng-repeat="c in classResults">
+            <td>{{c.StartTime}}</td>
+            <td>{{c.EndTime}}</td>
         </tr>
     </div>
 </table>
 <div ng-show="searchResults.length !== 0">
     <button ng-click="enrollCourse()" class="btn btn-primary">Enroll</button>
 </div>
+
+
+
+
+
+
+
+
