@@ -2,6 +2,10 @@ var app = angular.module('HomePageModule', ['ngRoute']);
 
 // create the controller and inject Angular's $scope
 app.controller('HomePageController', function($http, $window, $scope, $route, $rootScope, $location) {
+	var userID = localStorage.getItem('userID');
+	var type = localStorage.getItem('type');
+
+	// Initialize button rerouting
 
 	$scope.goToProfile = function() {
 		$location.path('/profile');
@@ -14,6 +18,18 @@ app.controller('HomePageController', function($http, $window, $scope, $route, $r
 	$scope.logout = function() {
 		$window.location = "https://mail.google.com/mail/u/0/?logout&hl=en";
 	};
+
+	$scope.isAdmin = function() {
+		return (type == 'admin');
+	};
+
+	$scope.admin = $scope.isAdmin();
+
+	$scope.goToCreateCoursePage = function() {
+		$location.path('/create_course');
+	};
+
+	// Initialize other functionality
 
 	$scope.queryTerm = "";
     $scope.searchSubmitted = false;
@@ -50,28 +66,31 @@ app.controller('HomePageController', function($http, $window, $scope, $route, $r
 				console.log(error);
 			});
     };
-    $scope.isAdmin = function() {
-    	$scope.fullName = $rootScope.fullName;
-    	if($scope.fullName === 'Tyler Russell');
-    		return true;
-    	return false;
-    };
-    $scope.admin = $scope.isAdmin();
-    $scope.goToCreateCoursePage = function() {
-    	$location.path('/create_course');
-    };
     
     $scope.enrollCourse = function() {
-     	//Should instead disable the Enroll button until a course is selected, cant figure it out yet
-     	if($scope.searchResults.length !== 0) {
-    		
-     		//use the UserID to get the Student ID
-     		var userID = localStorage.getItem('userID');
 
-     		//Get Student
-     		var endpoint1 = 'http://localhost:1337/vm344e.se.rit.edu/api/Student.php?action=get_student_by_user_id&id=' + userID;
-    		
-     	}
+	    //use the UserID to get the Student ID
+	    var student = 'http://localhost:1337/vm344e.se.rit.edu/api/Student.php?action=get_student_by_user_id&id=' + userID;
+	    var studentID = student.StudentID;
+
+        var classToEnroll = [];
+	    $(".enrollmentCheckbox").each(function() {
+		    if (this.checked){
+		    	classToEnroll.push(this.value);
+		    }
+	    });
+
+		//TODO - Logic to make sure classes fit into schedule/don't overlap
+
+	    for (var i = 0; i < classToEnroll.length; i++){
+		    $http.post("http://localhost:1337/vm344e.se.rit.edu/api/Student.php?action=create_studentclass&studentid=" + userID + "&classid=" + classToEnroll[i])
+			      .success(function(data) {
+					console.log("User with ID: " + userID + " enrolled in class");
+			    })
+			    .error(function(error) {
+				    console.log(error);
+			    });
+	    }
     };
 
 });

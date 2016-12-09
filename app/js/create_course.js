@@ -1,7 +1,35 @@
 var app = angular.module('CreateCourseModule', []);
 
 // create the controller and inject Angular's $scope
-app.controller('CreateCourseController', function($http, $scope, $location) {
+app.controller('CreateCourseController', function($http, $scope, $location, $route, $window) {
+	var userID = localStorage.getItem('userID');
+	var type = localStorage.getItem('type');
+
+	// Initialize button rerouting
+
+	$scope.goToProfile = function() {
+		$location.path('/profile');
+	};
+
+	$scope.reloadRoute = function() {
+		$location.path('/home');
+	};
+
+	$scope.logout = function() {
+		$window.location = "https://mail.google.com/mail/u/0/?logout&hl=en";
+	};
+
+	$scope.isAdmin = function() {
+		return (type == 'admin');
+	};
+
+	$scope.admin = $scope.isAdmin();
+
+	$scope.goToCreateCoursePage = function() {
+		$route.reload();//this will reinstantiate this controller, so anything in $scope will be lost!
+	};
+
+	// Initialize other functionality
 
 	$scope.courseName = "";
 	$scope.courseDescription = "";
@@ -27,10 +55,10 @@ app.controller('CreateCourseController', function($http, $scope, $location) {
 			.error(function(error) {
 				console.log('error occurred when creating the course');
 			});
-	}
+	};
 
-    $scope.routeHome = function() {
-        $location.path('/home');
-    };
+	$scope.reloadRoute = function() {
+		$location.path('/home');
+	};
 
 });

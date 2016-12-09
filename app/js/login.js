@@ -39,6 +39,7 @@ oauthModule
 							}
 							else {
 								localStorage.setItem('userID', data[0].UserID);
+								localStorage.setItem('type', data[0].Type);
 								//user exists, go to landing page
 								$location.path('/home');
 							}
@@ -49,16 +50,6 @@ oauthModule
 				})
 				.error(function (error) {
 					console.log('could not get data from Google+ API endpoint plus/v1/people/me');
-				});
-			$http.get('http://localhost:1337/vm344e.se.rit.edu/api/User.php?action=get_user_by_email&email=dd@d.d')
-				.success(function(data) {
-					if(data.length === 0) {
-						//no email found, redirect to HR
-						$window.location.href = "http://vm344b.se.rit.edu/auth/google";
-					}
-				})
-				.error(function(error) {
-					console.log('there was an error redirecting to the HR page');
 				});
 
 			$scope.loggedIn = true;

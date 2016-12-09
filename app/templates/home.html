@@ -10,8 +10,7 @@
         	</div>
         	<ul class="nav navbar-nav navbar-right">
                 <li ng-show="{{admin}}">
-                    <button type="button" class="navbar-toggle collapsed">
-                    </button>
+                    <button type="button" class="navbar-toggle collapsed"></button>
                     <a href="" ng-click="goToCreateCoursePage()">Create Course</a>
                 </li>
                 <li>
@@ -34,17 +33,10 @@
 
 	<form id="searchForm" class="form-inline">
 		<div class="col-md-8 col-lg-8 col-sm-8 col-xs-8">
-			<input id="searchBox" class="searchForm" ng-model="queryTerm" style="
-				width: 100%;
-				height: 30px;
-				padding: 5px 10px;
-				display: inline-block;"
-				   placeholder="Enter course name, course number, or course code" required />
+			<input id="searchBox" class="searchForm" ng-model="queryTerm" placeholder="Enter course name, course number, or course code" required />
 		</div>
 		<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-			<select id="term" style="width: 100%; height: 30px;
-    padding: 0px;
-    min-width: 200px;">
+			<select id="term">
 				<option value="0">Fall 2016</option>
 				<option value="1">Spring 2017</option>
 				<option value="2">Summer 2017</option>
@@ -55,8 +47,7 @@
 		<br /><br />
 
 		<div>
-			<button id="btnSearch" class="searchBtn" type="submit" ng-click="submitSearch()" value="Search" style="height: 30px;
-    width: 100px;">Search</button>
+			<button id="btnSearch" class="searchBtn" type="submit" ng-click="submitSearch()" value="Search">Search</button>
 		</div>
 		<br>
 	</form>
@@ -66,18 +57,12 @@
 		<div id="advancedFields">
 			<div class="row">
 				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-					<label class="advancedLabel" style="
-						width: 100%;
-						height: 30px;
-						padding: 5px 10px;
-						display: inline-block;">
+					<label class="advancedLabel">
 						   College:
 				   </label>
 				</div>
 				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-					<select class="advancedDropdown" style="width: 100%; height: 30px;
-			padding: 0px;
-			min-width: 200px;">
+					<select class="advancedDropdown">
 						<option value="0">Fall 2016</option>
 						<option value="1">Spring 2017</option>
 						<option value="2">Summer 2017</option>
@@ -87,18 +72,12 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-					<label class="advancedLabel" style="
-						width: 100%;
-						height: 30px;
-						padding: 5px 10px;
-						display: inline-block;">
+					<label class="advancedLabel">
 						Course Subject:
 					</label>
 				</div>
 				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-					<select class="advancedDropdown" style="width: 100%; height: 30px;
-			padding: 0px;
-			min-width: 200px;">
+					<select class="advancedDropdown">
 						<option value="0">Fall 2016</option>
 						<option value="1">Spring 2017</option>
 						<option value="2">Summer 2017</option>
@@ -108,18 +87,12 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-					<label class="advancedLabel" style="
-						width: 100%;
-						height: 30px;
-						padding: 5px 10px;
-						display: inline-block;">
+					<label class="advancedLabel">
 						Instructor:
 					</label>
 				</div>
 				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-					<select class="advancedDropdown" style="width: 100%; height: 30px;
-			padding: 0px;
-			min-width: 200px;">
+					<select class="advancedDropdown">
 						<option value="0">Fall 2016</option>
 						<option value="1">Spring 2017</option>
 						<option value="2">Summer 2017</option>
@@ -129,18 +102,12 @@
 			</div>
 			<div class="row">
 				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-					<label class="advancedLabel" style="
-						width: 100%;
-						height: 30px;
-						padding: 5px 10px;
-						display: inline-block;">
+					<label class="advancedLabel">
 						Credits:
 					</label>
 				</div>
 				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-					<select class="advancedDropdown" style="width: 100%; height: 30px;
-			padding: 0px;
-			min-width: 200px;">
+					<select class="advancedDropdown">
 						<option value="0">Fall 2016</option>
 						<option value="1">Spring 2017</option>
 						<option value="2">Summer 2017</option>
@@ -163,7 +130,7 @@
     </tr>
     <div ng-show="searchSubmitted">
         <tr ng-repeat="c in courseResults">
-            <td>{{c.Name}}<input class="enrollmentCheckbox" type="checkbox" onclick="submitCheck()"/></td>
+            <td>{{c.Name}}<input class="enrollmentCheckbox" type="checkbox" value="{{c.CourseID}}" onclick="submitCheck()"/></td>
             <td>{{c.Description}}</td>
             <td>{{c.Credits}}</td>
             <td>{{c.GPAReq}}</td>

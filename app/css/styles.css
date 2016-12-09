@@ -128,4 +128,62 @@
   margin-left: 10%;
 }
 
+table {
+  border-collapse: separate;
+  border-spacing: 0;
+  text-align: center;
+  margin: 0 auto;
+}
+th,
+td {
+  padding: 10px 15px;
+}
+thead {
+  background: #395870;
+  color: #fff;
+}
+tbody tr:nth-child(even) {
+  background: #f0f0f2;
+}
+td {
+  border-bottom: 1px solid #cecfd5;
+  border-right: 1px solid #cecfd5;
+}
+td:first-child {
+  border-left: 1px solid #cecfd5;
+}
+
+.searchForm {
+  width: 100%;
+  height: 30px;
+  padding: 5px 10px;
+  display: inline-block;
+}
+
+.advancedLabel {
+  width: 100%;
+  height: 30px;
+  padding: 5px 10px;
+  display: inline-block;
+}
+
+.advancedDropdown {
+  width: 100%;
+  height: 30px;
+  padding: 0px;
+  min-width: 200px;
+}
+
+#term {
+  width: 100%; height: 30px;
+  padding: 0px;
+  min-width: 200px;
+}
+
+.searchBtn {
+  height: 30px;
+  width: 100px;
+}
+
+
 

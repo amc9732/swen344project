@@ -6,7 +6,35 @@ app
 		socialProvider.setLinkedInKey("779g2rct9ezt1u");
 	})
 
-    .controller("UserProfileController", function($scope, $rootScope, $http, $route, $location){
+    .controller("UserProfileController", function($scope, $rootScope, $http, $route, $location, $window){
+	    var userID = localStorage.getItem('userID');
+	    var type = localStorage.getItem('type');
+
+	    // Initialize button rerouting
+
+	    $scope.goToProfile = function() {
+		    $route.reload();//this will reinstantiate this controller, so anything in $scope will be lost!
+	    };
+
+	    $scope.reloadRoute = function() {
+		    $location.path('/home');
+	    };
+
+	    $scope.logout = function() {
+		    $window.location = "https://mail.google.com/mail/u/0/?logout&hl=en";
+	    };
+
+	    $scope.isAdmin = function() {
+		    return (type == 'admin');
+	    };
+
+	    $scope.admin = $scope.isAdmin();
+
+	    $scope.goToCreateCoursePage = function() {
+		    $location.path('/create_course');
+	    };
+
+	    // Initialize other functionality
 
     	$scope.isConnected = function() {
     		if(localStorage.getItem('linkedInImageUrl'))
@@ -83,7 +111,4 @@ app
 
     	$scope.getCurrentCourse();
 
-        $scope.reloadRoute = function() {
-            $location.path('/home');
-        };
     });
