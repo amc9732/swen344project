@@ -37,13 +37,47 @@ app
 		};
 
         $scope.getCurrentCourse = function() {
+
+        	$scope.classInfo = [];
+        	$scope.courseInfo = [];
+
+        	//get enrolled class IDs using the current student ID
             $http.get("http://localhost:1337/vm344e.se.rit.edu/api/StudentClass.php?action=get_classIds_by_student_id&studentid=3")
-                .success(function(data) {
-                	$scope.currCourses = data;
-                    console.log(data);
-                })
+                .success(function(classIDs) {
+
+                	// for each class ID found
+                    for (var classIDIndex = 0; classIDIndex < classIDs.length; classIDIndex++) {
+
+                        //get class object for class ID
+                        $http.get("http://localhost:1337/vm344e.se.rit.edu/api/Class.php?action=get_class_by_classid&classid=" + classIDs[classIDIndex].ClassID)
+                            .success(function (classData) {
+
+								//add class object to array
+								$scope.classInfo.push(classData[0]);
+
+                                //for (var classIndex = 0; classIndex < classesList.length; classIndex++) {
+								$http.get("http://localhost:1337/vm344e.se.rit.edu/api/Course.php?action=get_course_by_courseid&courseid=" + classData[0].CourseID)
+									.success(function (courseData) {
+
+										//add course object to array
+										$scope.courseInfo.push(courseData[0]);
+
+
+                                        console.log($scope.classInfo);
+									})
+									.error(function (data) {
+										console.log("Error retrieving courses by id: " + data)
+									});
+                                //}
+                            })
+
+                            .error(function (data) {
+                                console.log("Error retrieving courses by id:" + data)
+                            });
+                    	}
+				})
                 .error(function(data){
-                    console.log("Error pulling data from student");
+                    console.log("Error pulling class id from student id: 3 " + data);
                 });
     	};
 
