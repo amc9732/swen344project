@@ -5,6 +5,20 @@ app.controller('HomePageController', function($http, $window, $scope, $route, $r
 	var userID = localStorage.getItem('userID');
 	var type = localStorage.getItem('type');
 
+	//use the UserID to get the Student ID
+	var student = 'http://localhost:1337/vm344e.se.rit.edu/api/Student.php?action=get_student_by_user_id&id=' + userID;
+	var studentID;
+
+	$http.get(student)
+		.success(function(data) {
+			studentID = data[0].StudentID;
+		})
+		.error(function(error){
+			console.log(error);
+		});
+
+
+
 	// Initialize button rerouting
 
 	$scope.goToProfile = function() {
@@ -68,30 +82,27 @@ app.controller('HomePageController', function($http, $window, $scope, $route, $r
     };
     
     $scope.enrollCourse = function() {
-
-	    //use the UserID to get the Student ID
-	    var student = 'http://localhost:1337/vm344e.se.rit.edu/api/Student.php?action=get_student_by_user_id&id=' + userID;
-	    var studentID = student.StudentID;
-
-        var classToEnroll = [];
-	    $(".enrollmentCheckbox").each(function() {
-		    if (this.checked){
-		    	classToEnroll.push(this.value);
+	    var classToEnroll = [];
+	    $(".enrollmentCheckbox").each(function () {
+		    if (this.checked) {
+			    classToEnroll.push(this.value);
 		    }
 	    });
 
-		//TODO - Logic to make sure classes fit into schedule/don't overlap
+	    //TODO - Logic to make sure classes fit into schedule/don't overlap
 
-	    for (var i = 0; i < classToEnroll.length; i++){
-		    $http.post("http://localhost:1337/vm344e.se.rit.edu/api/Student.php?action=create_studentclass&studentid=" + userID + "&classid=" + classToEnroll[i])
-			      .success(function(data) {
-					console.log("User with ID: " + userID + " enrolled in class");
+	    for (var i = 0; i < classToEnroll.length; i++) {
+		    var request = "http://localhost:1337/vm344e.se.rit.edu/api/Student.php?action=create_studentclass&studentid=" + studentID + "&classid=" + classToEnroll[i];
+		    console.log(request);
+		    $http.post(request)
+			    .success(function (data) {
+
 			    })
-			    .error(function(error) {
+			    .error(function (error) {
 				    console.log(error);
 			    });
 	    }
-    };
+    }
 
 });
 
