@@ -39,14 +39,14 @@
 		<h1>Class Search<br></h1>
 	</div>
 
-	<div id="searchForm" class="form-inline">
+	<form id="searchForm" class="form-inline">
 		<div class="col-md-8 col-lg-8 col-sm-8 col-xs-8">
-			<input id="searchBox" class="searchForm" style="
+			<input id="searchBox" class="searchForm" ng-model="queryTerm" style="
 				width: 100%;
 				height: 30px;
 				padding: 5px 10px;
 				display: inline-block;"
-				   placeholder="Enter course name, course number, or course code">
+				   placeholder="Enter course name, course number, or course code" required />
 		</div>
 		<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
 			<select id="term" style="width: 100%; height: 30px;
@@ -62,120 +62,102 @@
 		<br /><br />
 
 		<div>
-			<button id="btnSearch" class="searchBtn" type="submit" ng-click="searchClass()" value="Search" style="height: 30px;
+			<button id="btnSearch" class="searchBtn" type="submit" ng-click="searchForm.$valid && submitSearch()" value="Search" style="height: 30px;
     width: 100px;">Search</button>
 		</div>
 		<br>
-	</div>
+	</form>
 
-	<div id="advancedBtn">
-		<div class="row">
-			<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-				<label class="advancedLabel" style="
-					width: 100%;
-					height: 30px;
-					padding: 5px 10px;
-					display: inline-block;"
-					   >
-					   College:
-			   </label>
+	<div id="advancedBtn"><span id="advSearch" class="glyphicon glyphicon-chevron-right"><strong>Advanced Search</strong></span>
+		<div id="advancedFields">
+			<div class="row">
+				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+					<label class="advancedLabel" style="
+						width: 100%;
+						height: 30px;
+						padding: 5px 10px;
+						display: inline-block;">
+						   College:
+				   </label>
+				</div>
+				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+					<select class="advancedDropdown" style="width: 100%; height: 30px;
+			padding: 0px;
+			min-width: 200px;">
+						<option value="0">Fall 2016</option>
+						<option value="1">Spring 2017</option>
+						<option value="2">Summer 2017</option>
+						<option value="3">Fall 2017</option>
+					</select>
+				</div>
 			</div>
-			<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-				<select class="advancedDropdown" style="width: 100%; height: 30px;
-		padding: 0px;
-		min-width: 200px;">
-					<option value="0">Fall 2016</option>
-					<option value="1">Spring 2017</option>
-					<option value="2">Summer 2017</option>
-					<option value="3">Fall 2017</option>
-				</select>
+			<div class="row">
+				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+					<label class="advancedLabel" style="
+						width: 100%;
+						height: 30px;
+						padding: 5px 10px;
+						display: inline-block;">
+						Course Subject:
+					</label>
+				</div>
+				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+					<select class="advancedDropdown" style="width: 100%; height: 30px;
+			padding: 0px;
+			min-width: 200px;">
+						<option value="0">Fall 2016</option>
+						<option value="1">Spring 2017</option>
+						<option value="2">Summer 2017</option>
+						<option value="3">Fall 2017</option>
+					</select>
+				</div>
 			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-				<label class="advancedLabel" style="
-					width: 100%;
-					height: 30px;
-					padding: 5px 10px;
-					display: inline-block;"
-				>
-					Course Subject:
-				</label>
+			<div class="row">
+				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+					<label class="advancedLabel" style="
+						width: 100%;
+						height: 30px;
+						padding: 5px 10px;
+						display: inline-block;">
+						Instructor:
+					</label>
+				</div>
+				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+					<select class="advancedDropdown" style="width: 100%; height: 30px;
+			padding: 0px;
+			min-width: 200px;">
+						<option value="0">Fall 2016</option>
+						<option value="1">Spring 2017</option>
+						<option value="2">Summer 2017</option>
+						<option value="3">Fall 2017</option>
+					</select>
+				</div>
 			</div>
-			<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-				<select class="advancedDropdown" style="width: 100%; height: 30px;
-		padding: 0px;
-		min-width: 200px;">
-					<option value="0">Fall 2016</option>
-					<option value="1">Spring 2017</option>
-					<option value="2">Summer 2017</option>
-					<option value="3">Fall 2017</option>
-				</select>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-				<label class="advancedLabel" style="
-					width: 100%;
-					height: 30px;
-					padding: 5px 10px;
-					display: inline-block;"
-				>
-					Instructor:
-				</label>
-			</div>
-			<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-				<select class="advancedDropdown" style="width: 100%; height: 30px;
-		padding: 0px;
-		min-width: 200px;">
-					<option value="0">Fall 2016</option>
-					<option value="1">Spring 2017</option>
-					<option value="2">Summer 2017</option>
-					<option value="3">Fall 2017</option>
-				</select>
-			</div>
-		</div>
-		<div class="row">
-			<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-				<label class="advancedLabel" style="
-					width: 100%;
-					height: 30px;
-					padding: 5px 10px;
-					display: inline-block;"
-				>
-					Credits:
-				</label>
-			</div>
-			<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
-				<select class="advancedDropdown" style="width: 100%; height: 30px;
-		padding: 0px;
-		min-width: 200px;">
-					<option value="0">Fall 2016</option>
-					<option value="1">Spring 2017</option>
-					<option value="2">Summer 2017</option>
-					<option value="3">Fall 2017</option>
-				</select>
+			<div class="row">
+				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+					<label class="advancedLabel" style="
+						width: 100%;
+						height: 30px;
+						padding: 5px 10px;
+						display: inline-block;">
+						Credits:
+					</label>
+				</div>
+				<div class="col-md-4 col-lg-4 col-sm-4 col-xs-4">
+					<select class="advancedDropdown" style="width: 100%; height: 30px;
+			padding: 0px;
+			min-width: 200px;">
+						<option value="0">Fall 2016</option>
+						<option value="1">Spring 2017</option>
+						<option value="2">Summer 2017</option>
+						<option value="3">Fall 2017</option>
+					</select>
+				</div>
 			</div>
 		</div>
 	</div>
-
-
-
 </div>
 
-<div class="text-center pagination-centered">
-    <form name="searchForm">
-        <p>Search By Course Name:</p>
-        <input ng-model="queryTerm" required/>
-        <!-- <p>Filter By:</p>
-        <select ng-model="queryBy" required>
-            <option value="">None</option>
-            <option value="courseNumber">Course Number (eg: 101 or 344)</option>
-            <option value="courseName">Course Name (eg: Web Engineering or Calculus)</option>
-        </select> -->
-        <button ng-click="searchForm.$valid && submitSearch()" class="btn btn-primary">Submit</button>
-    </form>
-</div>
 
 <table class="table table-striped table-responsive results-table">
     <tr>
@@ -195,6 +177,26 @@
         </tr>
     </div>
 </table>
+
+<script>
+    $(document).ready(function(){
+        var advancedHidden = true;
+        $("#advancedFields").slideUp();
+        $("#advancedBtn").click(function(){
+            if (!advancedHidden) {
+                $("#advancedFields").slideUp();
+                advancedHidden = true;
+                $("#advSearch").removeClass("glyphicon-chevron-down");
+                $("#advSearch").addClass("glyphicon-chevron-right");
+            } else {
+                $("#advancedFields").slideDown();
+                advancedHidden = false;
+                $("#advSearch").removeClass("glyphicon-chevron-right");
+                $("#advSearch").addClass("glyphicon-chevron-down");
+            }
+        });
+    });
+</script>
 
 
 

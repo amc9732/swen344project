@@ -114,5 +114,14 @@
   margin-top: 3%;
 }
 
+#advancedBtn {
+  margin-left: 100px;
+  text-align: left;
+}
+
+#advancedFields {
+  position: relative;
+  margin-left: 10%;
+}
 
 
