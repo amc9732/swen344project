@@ -8,14 +8,15 @@ app
 
     .controller("UserProfileController", function($scope, $rootScope, $http, $route, $location){
 
-    	$scope.linkedInAuthorized = false;
+    	$scope.isConnected = function() {
+    		if(localStorage.getItem('linkedInImageUrl'))
+    			return true;
+    		return false;
+    	}
 
     	//This event is called by the angular-social-login bower package
     	$rootScope.$on('event:social-sign-in-success', function(event, userDetails) {
-            console.log(event);
-            console.log(userDetails);
     		localStorage.setItem("linkedInImageUrl", userDetails.imageUrl);
-    		$scope.linkedInAuthorized = true;
     		$location.path('/profile');
     	});
 
@@ -27,24 +28,12 @@ app
     	$scope.removeLinkedIn = function() {
     		localStorage.removeItem('linkedInImageUrl');
     		$route.reload();
-
     	}
 
-
-    	//needs to be wrapped in a function
-		$scope.courses = [];
-
-		$scope.students = "";
-
-		$http.get("http://localhost:1337/vm344e.se.rit.edu/api/Student.php?action=get_all_students")
-			.success(function(data) {
-				$scope.students = data;
-			})
-
-			.error(function(error) {
-				console.log (error);
-			})
-
-
+    	$scope.selectedRow = null;
+		
+		$scope.setClickedRow = function(index) {
+			$scope.selectedRow = index;
+		}
         
     });
